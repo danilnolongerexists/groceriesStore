@@ -37,7 +37,7 @@ class ProductsEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return $this->product->exists ? 'Edit product' : 'Creating a new product';
+        return $this->product->exists ? 'Редактировать' : 'Создать';
     }
 
 
@@ -49,17 +49,17 @@ class ProductsEditScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Button::make('Create product')
+            Button::make('Создать')
             ->icon('pencil')
             ->method('createOrUpdate')
             ->canSee(!$this->product->exists),
 
-            Button::make('Update')
+            Button::make('Обновить')
                 ->icon('note')
                 ->method('createOrUpdate')
                 ->canSee($this->product->exists),
 
-            Button::make('Remove')
+            Button::make('Удалить')
                 ->icon('trash')
                 ->method('remove')
                 ->canSee($this->product->exists),
@@ -76,18 +76,18 @@ class ProductsEditScreen extends Screen
         return [
             Layout::rows([
                 Input::make('product.name')
-                    ->title('Name'),
+                    ->title('Название'),
                 Input::make('product.description')
-                    ->title('Description'),
+                    ->title('Описание'),
                 Cropper::make('product.image')
                     ->targetId()
-                    ->title('Large web banner image, generally in the front and center')
+                    ->title('Фото')
                     ->width(500)
                     ->height(500),
                 Input::make('product.price')
-                    ->title('Price'),
+                    ->title('Цена'),
                 Relation::make('product.category_id')
-                    ->title('Category ID')
+                    ->title('Категория')
                     ->fromModel(Category::class, 'name', 'id'),
             ])
         ];
@@ -97,7 +97,7 @@ class ProductsEditScreen extends Screen
     {
         $this->product->fill($request->get('product'))->save();
 
-        Alert::info('You have successfully created a product.');
+        Alert::info('Продукт успешно сохранён!');
 
         return redirect()->route('platform.product.list');
     }
@@ -106,7 +106,7 @@ class ProductsEditScreen extends Screen
     {
         $this->product->delete();
 
-        Alert::info('You have successfully deleted the product.');
+        Alert::info('Продукт был удалён!');
 
         return redirect()->route('platform.product.list');
     }

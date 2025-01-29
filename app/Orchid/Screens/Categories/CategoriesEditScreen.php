@@ -33,7 +33,7 @@ class CategoriesEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return $this->category->exists ? 'Edit category' : 'Creating a new category';
+        return $this->category->exists ? 'Редактировать' : 'Создать';
     }
 
     /**
@@ -44,17 +44,17 @@ class CategoriesEditScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Button::make('Create category')
+            Button::make('Создать')
                 ->icon('pencil')
                 ->method('createOrUpdate')
                 ->canSee(!$this->category->exists),
 
-            Button::make('Update')
+            Button::make('Обновить')
                 ->icon('note')
                 ->method('createOrUpdate')
                 ->canSee($this->category->exists),
 
-            Button::make('Remove')
+            Button::make('Удалить')
                 ->icon('trash')
                 ->method('remove')
                 ->canSee($this->category->exists),
@@ -71,10 +71,10 @@ class CategoriesEditScreen extends Screen
         return [
             Layout::rows([
                 Input::make('category.name')
-                    ->title('Name'),
+                    ->title('Название'),
                 Cropper::make('category.image')
                     ->targetId()
-                    ->title('Large web banner image, generally in the front and center')
+                    ->title('Фото')
                     ->width(500)
                     ->height(500),
             ])
@@ -85,7 +85,7 @@ class CategoriesEditScreen extends Screen
     {
         $this->category->fill($request->get('category'))->save();
 
-        Alert::info('You have successfully created a category.');
+        Alert::info('Категория успешно сохранена!');
 
         return redirect()->route('platform.category.list');
     }
@@ -94,7 +94,7 @@ class CategoriesEditScreen extends Screen
     {
         $this->category->delete();
 
-        Alert::info('You have successfully deleted the category.');
+        Alert::info('Категория была удалена!');
 
         return redirect()->route('platform.category.list');
     }

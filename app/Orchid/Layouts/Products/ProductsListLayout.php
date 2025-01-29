@@ -28,26 +28,26 @@ class ProductsListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('name', __('Name'))
+            TD::make('name', __('Название'))
                 ->sort()
                 ->filter(Input::make())
                 ->render(function (Product $product) {
                     return Link::make($product->name)
                         ->route('platform.product.edit', $product);
                 }),
-            TD::make('description', __('Description'))
+            TD::make('description', __('Описание'))
                 ->sort()
                 ->filter(Input::make())
                 ->render(function (Product $product) {
                     return $product->description;
                 }),
-            TD::make('price', __('Price'))
+            TD::make('price', __('Цена'))
                 ->sort()
                 ->filter(Input::make())
                 ->render(function (Product $product) {
                     return $product->price;
                 }),
-            TD::make('category_id', __('Category'))
+            TD::make('category_id', __('Категория'))
                 ->sort()
                 ->filter(Input::make())
                 ->render(function (Product $product) {

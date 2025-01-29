@@ -37,8 +37,8 @@ class PlatformProvider extends OrchidServiceProvider
 
             Menu::make('Категории')
                 ->icon('list')
-                ->route('platform.category.list')
-                ->title('Products'),
+                ->route('platform.category.list'),
+                // ->title('Products'),
 
             Menu::make('Продукты')
                 ->icon('list')
@@ -48,7 +48,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.people')
                 ->route('platform.systems.users')
                 ->permission('platform.systems.users')
-                ->title(__('Access Controls')),
+                ->title(__('Контроль доступа')),
 
             Menu::make(__('Роли'))
                 ->icon('bs.shield')

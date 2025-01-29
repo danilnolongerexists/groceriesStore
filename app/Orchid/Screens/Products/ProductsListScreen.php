@@ -28,7 +28,7 @@ class ProductsListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Products';
+        return 'Продукты';
     }
 
     /**
@@ -39,7 +39,7 @@ class ProductsListScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Link::make('Create new')
+            Link::make('Создать')
             ->icon('pencil')
             ->route('platform.product.edit')
         ];

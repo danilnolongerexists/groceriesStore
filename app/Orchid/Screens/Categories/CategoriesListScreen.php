@@ -28,7 +28,7 @@ class CategoriesListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Categories';
+        return 'Категории';
     }
 
     /**
@@ -39,7 +39,7 @@ class CategoriesListScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Link::make('Create new')
+            Link::make('Создать')
             ->icon('pencil')
             ->route('platform.category.edit')
         ];

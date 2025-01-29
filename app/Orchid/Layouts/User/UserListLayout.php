@@ -28,7 +28,7 @@ class UserListLayout extends Table
     public function columns(): array
     {
         return [
-            TD::make('name', __('Name'))
+            TD::make('name', __('Имя'))
                 ->sort()
                 ->cantHide()
                 ->filter(Input::make())
@@ -46,31 +46,31 @@ class UserListLayout extends Table
                         'user' => $user->id,
                     ])),
 
-            TD::make('created_at', __('Created'))
+            TD::make('created_at', __('Создан'))
                 ->usingComponent(DateTimeSplit::class)
                 ->align(TD::ALIGN_RIGHT)
                 ->defaultHidden()
                 ->sort(),
 
-            TD::make('updated_at', __('Last edit'))
+            TD::make('updated_at', __('Последнее редактирование'))
                 ->usingComponent(DateTimeSplit::class)
                 ->align(TD::ALIGN_RIGHT)
                 ->sort(),
 
-            TD::make(__('Actions'))
+            TD::make(__('Действия'))
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
                 ->render(fn (User $user) => DropDown::make()
                     ->icon('bs.three-dots-vertical')
                     ->list([
 
-                        Link::make(__('Edit'))
+                        Link::make(__('Редактировать'))
                             ->route('platform.systems.users.edit', $user->id)
                             ->icon('bs.pencil'),
 
-                        Button::make(__('Delete'))
+                        Button::make(__('Удалить'))
                             ->icon('bs.trash3')
-                            ->confirm(__('Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
+                            ->confirm(__('После удаления учетной записи все ее ресурсы и данные будут безвозвратно удалены. Перед удалением учетной записи загрузите все данные и информацию, которые вы хотите сохранить'))
                             ->method('remove', [
                                 'id' => $user->id,
                             ]),

@@ -28,14 +28,14 @@ class CategoriesListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('name', __('Name'))
+            TD::make('name', __('Название'))
                 ->sort()
                 ->filter(Input::make())
                 ->render(function (Category $category) {
                     return Link::make($category->name)
                         ->route('platform.category.edit', $category);
                 }),
-            TD::make('count_products', __('Count products'))
+            TD::make('count_products', __('Кол-во продуктов'))
                 ->sort()
                 ->filter(Input::make())
                 ->render(function (Category $category) {
