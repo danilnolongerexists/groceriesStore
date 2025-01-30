@@ -75,8 +75,6 @@ class CategoriesEditScreen extends Screen
                 Cropper::make('category.image')
                     ->targetId()
                     ->title('Фото')
-                    ->width(500)
-                    ->height(500),
             ])
         ];
     }

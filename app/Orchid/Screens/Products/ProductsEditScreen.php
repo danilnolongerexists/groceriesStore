@@ -81,9 +81,7 @@ class ProductsEditScreen extends Screen
                     ->title('Описание'),
                 Cropper::make('product.image')
                     ->targetId()
-                    ->title('Фото')
-                    ->width(500)
-                    ->height(500),
+                    ->title('Фото'),
                 Input::make('product.price')
                     ->title('Цена'),
                 Relation::make('product.category_id')

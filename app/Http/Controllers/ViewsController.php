@@ -12,7 +12,7 @@ class ViewsController extends Controller
     {
         $categories = Category::all()->map(function ($category) {
             $image = Attachment::find($category->image);
-            $category->image = $image ? $image->url() : 'https://via.placeholder.com/500';
+            $category->image = $image ? $image->url() : null;
             return $category;
         });
 
