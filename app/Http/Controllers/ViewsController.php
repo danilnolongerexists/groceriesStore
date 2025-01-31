@@ -21,6 +21,22 @@ class ViewsController extends Controller
         ]);
     }
 
+    public function register()
+    {
+        return view("pages.register");
+    }
+
+    public function login()
+    {
+        return view("pages.login");
+    }
+
+    public function profile()
+    {
+        return view("pages.profile");
+    }
+
+
     public function category(Category $category)
     {
         return view("pages.category", [
