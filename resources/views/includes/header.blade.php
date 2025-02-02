@@ -9,18 +9,18 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{{ route('index') }}">Бригантина</a>
+    <div>
+        <nav>
+            <a href="{{ route('index') }}">Бригантина</a>
             <input type="text" placeholder="Найти товары...">
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+            <div>
+                <ul>
                     @auth
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('profile') }}">Профиль</a>
+                        <li>
+                            <a href="{{ route('profile') }}">Профиль</a>
                         </li>
                     @else
-                        <li class="nav-item">
+                        <li>
                             <button id="openModalBtn">Войти</button>
                         </li>
                     @endauth

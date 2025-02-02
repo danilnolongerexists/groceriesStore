@@ -37,19 +37,19 @@
 }
 
 /* Стили для форм */
-form {
+.modal form {
     display: flex;
     flex-direction: column;
 }
 
-input {
+.modal input {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-button {
+.modal button {
     padding: 10px;
     background-color: #28a745;
     color: white;
@@ -58,21 +58,21 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.modal button:hover {
     background-color: #218838;
 }
 
-p {
+.modal p {
     text-align: center;
     margin-top: 10px;
 }
 
-a {
+.modal a {
     color: #007bff;
     text-decoration: none;
     cursor: pointer;
 }
 
-a:hover {
+.modal a:hover {
     text-decoration: underline;
 }
