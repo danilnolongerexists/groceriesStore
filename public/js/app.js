@@ -1,25 +1,25 @@
-// Получаем элементы
+// Получаем элементы (Модалка Входа)
 const modal = document.getElementById("myModal");
 const openModalBtn = document.getElementById("openModalBtn");
-const closeModalBtn = document.querySelector(".close");
+const closeModalBtn = document.getElementById("close");
 const loginForm = document.getElementById("loginForm");
 const registerForm = document.getElementById("registerForm");
 const switchToRegister = document.getElementById("switchToRegister");
 const switchToLogin = document.getElementById("switchToLogin");
 
-// Открываем модальное окно
+// Открываем модальное окно входа
 openModalBtn.addEventListener("click", () => {
     modal.style.display = "block";
     loginForm.style.display = "block"; // Показываем форму авторизации по умолчанию
     registerForm.style.display = "none"; // Скрываем форму регистрации
 });
 
-// Закрываем модальное окно
+// Закрываем модальное окно входа
 closeModalBtn.addEventListener("click", () => {
     modal.style.display = "none";
 });
 
-// Закрываем модальное окно при клике вне его области
+// Закрываем модальное окно входа при клике вне его области
 window.addEventListener("click", (event) => {
     if (event.target === modal) {
         modal.style.display = "none";

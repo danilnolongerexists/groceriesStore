@@ -15,4 +15,4 @@ Route::post('/login', [ActionsController::class, 'login']);
 Route::get('/logout', [ActionsController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::get('/profile', [ViewsController::class, 'profile'])->name('profile')->middleware('auth');
-
+Route::put('/profile', [ActionsController::class, 'profile_update'])->name('profile.update')->middleware('auth');

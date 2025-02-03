@@ -17,7 +17,7 @@
                 <ul>
                     @auth
                         <li>
-                            <a href="{{ route('profile') }}">Профиль</a>
+                            <button id="openProfileModalBtn">Профиль</button>
                         </li>
                     @else
                         <li>
@@ -31,7 +31,7 @@
 
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" id="close">&times;</span>
 
             <!-- Форма авторизации -->
             <div id="loginForm">
@@ -40,8 +40,8 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Введите почту" required name="user[email]">
+                        <label for="phone">Номер телефона</label>
+                        <input type="phone" class="form-control" id="phone-log" placeholder="Введите номер телефона" required name="user[phone]">
                     </div>
 
                     <div class="form-group">
@@ -71,6 +71,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="phone">Номер телефона</label>
+                        <input type="phone" class="form-control" id="phone-reg" placeholder="Введите номер телефона" required name="user[phone]">
+                    </div>
+
+                    <div class="form-group">
                         <label for="password">Пароль</label>
                         <input type="password" class="form-control" id="password" placeholder="Введите пароль" required name="user[password]">
                     </div>
@@ -87,7 +92,61 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/app.js') }}"></script>
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeProfile">&times;</span>
+            <div id="modalProfile">
+                @auth
+                <h2>{{ Auth::user()->phone }}</h2>
+                <div id="modalProfileInfo" style="display: flex;flex-direction: column;align-items: flex-start;">
+                    <p>{{ Auth::user()->name }}</p>
+                    <p>{{ Auth::user()->email }}</p>
+                    <p>{{ Auth::user()->address }}</p>
+                </div>
+                    <button id="editProfileBtn">Редактировать профиль</button>
+                    <a class="nav-link" href="{{ route('logout') }}">Выход</a>
+            </div>
+            <div id="editProfileForm" style="display: none;">
+                <h2>Редактировать профиль</h2>
+                <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label for="name">Имя</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}">
+                      </div>
+                      <div class="form-group">
+                        <label for="phone">Номер телефона</label>
+                        <input type="phone" class="form-control" id="phone-upd" placeholder="Введите номер телефона" name="phone" value="{{ Auth::user()->phone }}">
+                    </div>
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}">
+                      </div>
+                      <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Введите новый пароль">
+                      </div>
+                      <div class="form-group">
+                        <label for="address">Адрес</label>
+                        <input type="address" class="form-control" id="address" name="address" placeholder="Введите новый адрес" value="{{ Auth::user()->address }}">
+                      </div>
+                    </div>
+                    @endauth
+                    <div class="modal-footer">
+                      <button type="submit">Сохранить изменения</button>
+                    </div>
+                  </form>
+                <button id="cancelEditBtn">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+<script src="https://unpkg.com/imask"></script>
+<script src="{{ asset('js/phone.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/modalProfile.js') }}"></script>
 
 @if($errors -> any())
     <div class="alert alert-danger">
