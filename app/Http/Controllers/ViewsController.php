@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Orchid\Attachment\Models\Attachment;
-
+use App\Models\Product;
+use App\Models\Cart;
 
 class ViewsController extends Controller
 {
@@ -18,6 +19,7 @@ class ViewsController extends Controller
 
         return view("index", [
             'categories' => $categories,
+            'products' => Cart::all(),
         ]);
     }
 
@@ -36,12 +38,27 @@ class ViewsController extends Controller
         return view("pages.profile");
     }
 
+    // public function cart()
+    // {
+    //     return view("pages.cart", [
+    //         'products' => Cart::all(),
+    //     ]);
+    // }
 
-    public function category(Category $category)
+    public function category()
     {
+
+        $products = Product::all()->map(function ($product) {
+            $image = Attachment::find($product->image);
+            $product->image = $image ? $image->url() : null;
+            return $product;
+        });
+
+        $categories = Category::all();
+
         return view("pages.category", [
-            'category' => $category,
+            'products' => $products,
+            'categories' => $categories
         ]);
     }
-
 }

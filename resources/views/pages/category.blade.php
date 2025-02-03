@@ -1,0 +1,61 @@
+@include('includes.header')
+
+<section>
+    <aside>
+        @foreach ($categories as $category)
+        <div class="categories">
+            <div class="category">
+                <img src="{{ $category->image }}" alt="{{ $category->name }}" style="height: 80px; object-fit: cover;">
+                <div>
+                    <h2><a href="{{ route('category.show', $category) }}">{{ $category->name }}</a></h2>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </aside>
+
+    <main class="main-index">
+        @foreach ($products as $product)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="{{ $product->image }}" alt="{{ $product->name }}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <p class="card-title">{{ $product->name }}</p>
+                        <p class="card-title">{{ $product->price }} ₽</p>
+                        @auth
+                            @php
+                                $inCart = \App\Models\Cart::where('user_id', auth()->id())
+                                    ->where('product_id', $product->id)
+                                    ->first();
+                            @endphp
+                            @if ($inCart)
+                                <div style="display: flex; align-items: center;">
+                                    <form action="{{ route('cart.decrease', $product) }}" method="POST" style="margin-right: 10px;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">-</button>
+                                    </form>
+                                    {{ $inCart->count }}
+                                    <form action="{{ route('cart.increase', $product) }}" method="POST" style="margin-left: 10px;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success">+</button>
+                                    </form>
+                                </div>
+                            @else
+                                <form action="{{ route('cart.add', $product) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">Добавить в корзину</button>
+                                </form>
+                            @endif
+                        @endauth
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </main>
+
+    <aside class="cart-index">
+        @include('pages.cart')
+    </aside>
+
+</section>
+

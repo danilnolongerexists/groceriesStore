@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use App\Models\Product;
-
+use App\Models\Cart;
 
 class ActionsController extends Controller
 {
