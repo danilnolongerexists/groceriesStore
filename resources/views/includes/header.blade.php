@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-    <div>
-        <nav>
+    <div class="header">
+        <nav class="header-nav">
             <a href="{{ route('index') }}">Бригантина</a>
             <input type="text" placeholder="Найти товары...">
             <div>

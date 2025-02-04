@@ -40,22 +40,15 @@ class ViewsController extends Controller
 
     public function cart()
     {
-
+        $products=Cart::all()->map(function ($product) {
+            $image = Attachment::find($product->product->image);
+            $product->product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
+            return $product;
+        });
         return view("pages.cart", [
-            'products' => Cart::all(),
+            'products' => $products,
             // 'products' => Cart::all(),
         ]);
-
-        // // Получаем все категории и обрабатываем их изображения
-        // $products = Product::all()->map(function ($product) {
-        //     $image = Attachment::find($product->image);
-        //     $product->image = $image ? $image->url() : null;
-        //     return $product;
-        // });
-
-        // return view("pages.cart", [
-        //     'products' => Cart::all(),
-        // ]);
     }
 
     public function category(Category $category)

@@ -27,7 +27,7 @@
                                 $total += $product->product->price * $product->count;
                             @endphp
                             <tr>
-                                <td><button id="openProductModalBtn">{{ $product->product->name }}</button></td>
+                                <td><button id="openProductModalBtn" onclick="setproducttemp({{ json_encode($product->product->id) }})">{{ $product->product->name }}</button></td>
                                 <td>{{ $product->product->price * $product->count }}</td>
                                 <td>
                                     <div style="display: flex; align-items: center;">
@@ -43,6 +43,21 @@
                                     </div>
                                 </td>
                             </tr>
+
+                            <div id="productModal-{{ $product->product->id}}" class="modal">
+                                <div class="modal-content">
+                                    <span class="close" onclick="closeProduct()">&times;</span>
+                                    <div id="modalProduct">
+                                        <h2 id="modal-cart-name">{{ $product->product->name }}</h2>
+                                        <div id="modalProductInfo" style="display: flex;flex-direction: column;align-items: flex-start;">
+                                            <img class="card-img-top" id="modal-cart-image" src="{{ $product->product->image }}" alt="{{ $product->product->name }}" style="height: 200px; object-fit: cover;">
+                                            <p id="modal-cart-description" class="card-title">{{ $product->product->description }}</p>
+                                            <p id="modal-cart-price" class="card-title">{{ $product->product->price }} ₽</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         @else
                             <tr>
                                 <td colspan="3">Товар недоступен</td>
@@ -52,19 +67,19 @@
                     </tbody>
                 </table>
 
-                <div id="productModal" class="modal">
+                {{-- <div id="productModal" class="modal">
                     <div class="modal-content">
                         <span class="close" id="closeProduct">&times;</span>
                         <div id="modalProduct">
-                            <h2>{{ $product->product->name }}</h2>
+                            <h2 id="modal-cart-name"></h2>
                             <div id="modalProductInfo" style="display: flex;flex-direction: column;align-items: flex-start;">
-                                <img class="card-img-top" src="{{ $product->image }}" alt="{{ $product->name }}" style="height: 200px; object-fit: cover;">
-                                <p class="card-title">{{ $product->product->description }}</p>
-                                <p class="card-title">{{ $product->product->price }} ₽</p>
+                                <img class="card-img-top" id="modal-cart-image" src="" alt="{{ $product->name }}" style="height: 200px; object-fit: cover;">
+                                <p id="modal-cart-description" class="card-title">{{ $product->product->description }}</p>
+                                <p id="modal-cart-price" class="card-title">{{ $product->product->price }} ₽</p>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <p>Общая сумма: {{ $total }}</p>
                 <form action="{{ route('cart.checkout') }}" method="POST">

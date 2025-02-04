@@ -10,6 +10,8 @@ openProfileModalBtn.addEventListener("click", () => {
     modalProfileInfo.style.textAlign = "left";
 });
 
+
+
 // Закрываем модальное окно профиля при клике на крестик
 closeProfileModalBtn.addEventListener("click", () => {
     profileModal.style.display = "none";
