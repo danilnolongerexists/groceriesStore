@@ -1,26 +1,18 @@
 @include('includes.header')
 
-<section>
-    <aside>
-        @foreach ($categories as $category)
-        <div class="categories">
-            <div class="category">
-                <img src="{{ $category->image }}" alt="{{ $category->name }}" style="height: 80px; object-fit: cover;">
-                <div>
-                    <h2><a href="{{ route('category.show', $category) }}">{{ $category->name }}</a></h2>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </aside>
+<section class="main-section-categories">
+
+
 
     <main class="main-index">
+        <h2>{{ $category->name }}</h2>
         @foreach ($products as $product)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <img class="card-img-top" src="{{ $product->image }}" alt="{{ $product->name }}" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
-                        <p class="card-title">{{ $product->name }}</p>
+                        <button id="openProductModalBtn">{{ $product->name }}</button>
+                        {{-- <p class="card-title">{{ $product->name }}</p> --}}
                         <p class="card-title">{{ $product->price }} ₽</p>
                         @auth
                             @php
@@ -53,9 +45,33 @@
         @endforeach
     </main>
 
-    <aside class="cart-index">
-        @include('pages.cart')
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeProduct">&times;</span>
+            <div id="modalProduct">
+                <h2>{{ $product->name }}</h2>
+                <div id="modalProductInfo" style="display: flex;flex-direction: column;align-items: flex-start;">
+                    <img class="card-img-top" src="{{ $product->image }}" alt="{{ $product->name }}" style="height: 200px; object-fit: cover;">
+                    <p class="card-title">{{ $product->description }}</p>
+                    <p class="card-title">{{ $product->price }} ₽</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <aside>
+        <div class="categories">
+            @foreach ($categories as $category)
+            <div class="category">
+                <img src="{{ $category->image }}" alt="{{ $category->name }}" style="height: 80px; object-fit: cover;">
+                <div>
+                    <h2><a href="{{ route('category.show', $category) }}">{{ $category->name }}</a></h2>
+                </div>
+            </div>
+            @endforeach
+        </div>
     </aside>
 
 </section>
 
+<script src="{{ asset('js/modalProduct.js') }}"></script>

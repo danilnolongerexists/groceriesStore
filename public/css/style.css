@@ -9,13 +9,20 @@ body {
     position: relative;
 }
 
+.main-section {
+    display: flex;
+    position: relative;
+}
+
+.main-section-categories {
+    display: flex;
+    position: relative;
+    flex-direction: row-reverse;
+}
+
 .main-index {
     width: 100%;
     border: black solid;
-}
-
-.cart-index {
-    width: 50%;
 }
 
 /* КАТЕГОРИЯ */
@@ -26,6 +33,7 @@ body {
     flex-direction: column;
     width: 240px;
     border: black solid;
+    gap: 15px;
 }
 
 .category {

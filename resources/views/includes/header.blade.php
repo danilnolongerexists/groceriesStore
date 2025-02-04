@@ -19,6 +19,9 @@
                         <li>
                             <button id="openProfileModalBtn">Профиль</button>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cart') }}">Корзина</a>
+                        </li>
                     @else
                         <li>
                             <button id="openModalBtn">Войти</button>

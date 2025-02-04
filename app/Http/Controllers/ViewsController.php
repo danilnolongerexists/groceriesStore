@@ -19,7 +19,7 @@ class ViewsController extends Controller
 
         return view("index", [
             'categories' => $categories,
-            'products' => Cart::all(),
+            // 'products' => Cart::all(),
         ]);
     }
 
@@ -38,27 +38,47 @@ class ViewsController extends Controller
         return view("pages.profile");
     }
 
-    // public function cart()
-    // {
-    //     return view("pages.cart", [
-    //         'products' => Cart::all(),
-    //     ]);
-    // }
-
-    public function category()
+    public function cart()
     {
 
-        $products = Product::all()->map(function ($product) {
+        return view("pages.cart", [
+            'products' => Cart::all(),
+            // 'products' => Cart::all(),
+        ]);
+
+        // // Получаем все категории и обрабатываем их изображения
+        // $products = Product::all()->map(function ($product) {
+        //     $image = Attachment::find($product->image);
+        //     $product->image = $image ? $image->url() : null;
+        //     return $product;
+        // });
+
+        // return view("pages.cart", [
+        //     'products' => Cart::all(),
+        // ]);
+    }
+
+    public function category(Category $category)
+    {
+        // Получаем все категории и обрабатываем их изображения
+        $categories = Category::all()->map(function ($categoryItem) {
+            $image = Attachment::find($categoryItem->image);
+            $categoryItem->image = $image ? $image->url() : null;
+            return $categoryItem;
+        });
+
+        $products = $category->products()->get()->map(function ($product) {
             $image = Attachment::find($product->image);
-            $product->image = $image ? $image->url() : null;
+            $product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
             return $product;
         });
 
-        $categories = Category::all();
-
+        // Передаем как одну категорию, так и список всех категорий в представление
         return view("pages.category", [
-            'products' => $products,
-            'categories' => $categories
+            'category' => $category,
+            'categories' => $categories, // Добавляем переменную $categories
+            'products' => $products, // Передаем список продуктов
+
         ]);
     }
 }
