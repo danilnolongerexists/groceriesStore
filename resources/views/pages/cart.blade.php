@@ -12,9 +12,10 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Название товара</th>
-                            <th>Цена</th>
-                            <th>Количество</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,8 +28,9 @@
                                 $total += $product->product->price * $product->count;
                             @endphp
                             <tr>
+                                <td><img class="card-img-top" id="modal-cart-image" src="{{ $product->product->image }}" alt="{{ $product->product->name }}" style="height: 60px; object-fit: cover;"></td>
                                 <td><button id="openProductModalBtn" onclick="setproducttemp({{ json_encode($product->product->id) }})">{{ $product->product->name }}</button></td>
-                                <td>{{ $product->product->price * $product->count }}</td>
+                                <td>{{ $product->product->price * $product->count }} ₽</td>
                                 <td>
                                     <div style="display: flex; align-items: center;">
                                         <form action="{{ route('cart.decrease', $product->product->id) }}" method="POST" style="margin-right: 10px;">
@@ -67,21 +69,7 @@
                     </tbody>
                 </table>
 
-                {{-- <div id="productModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" id="closeProduct">&times;</span>
-                        <div id="modalProduct">
-                            <h2 id="modal-cart-name"></h2>
-                            <div id="modalProductInfo" style="display: flex;flex-direction: column;align-items: flex-start;">
-                                <img class="card-img-top" id="modal-cart-image" src="" alt="{{ $product->name }}" style="height: 200px; object-fit: cover;">
-                                <p id="modal-cart-description" class="card-title">{{ $product->product->description }}</p>
-                                <p id="modal-cart-price" class="card-title">{{ $product->product->price }} ₽</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-
-                <p>Общая сумма: {{ $total }}</p>
+                <p>Общая сумма: {{ $total }} ₽</p>
                 <form action="{{ route('cart.checkout') }}" method="POST">
                     @csrf
                     <div class="form-group">
