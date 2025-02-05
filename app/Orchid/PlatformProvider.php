@@ -44,6 +44,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('list')
                 ->route('platform.product.list'),
 
+            Menu::make('Отзывы')
+                ->icon('list')
+                ->route('platform.review.list'),
+
             Menu::make(__('Пользователи'))
                 ->icon('bs.people')
                 ->route('platform.systems.users')

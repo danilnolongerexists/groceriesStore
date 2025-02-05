@@ -10,8 +10,6 @@ openProfileModalBtn.addEventListener("click", () => {
     modalProfileInfo.style.textAlign = "left";
 });
 
-
-
 // Закрываем модальное окно профиля при клике на крестик
 closeProfileModalBtn.addEventListener("click", () => {
     profileModal.style.display = "none";
@@ -39,3 +37,16 @@ cancelEditBtn.addEventListener("click", () => {
     modalProfile.style.display = "block";
 });
 
+const openOrdersBtn = document.getElementById("openOrdersBtn");
+const cancelOrdersBtn = document.getElementById("cancelOrdersBtn");
+const ordersProfile = document.getElementById("ordersProfile");
+
+openOrdersBtn.addEventListener("click", () => {
+    modalProfile.style.display = "none";
+    ordersProfile.style.display = "block";
+});
+
+cancelOrdersBtn.addEventListener("click", () => {
+    ordersProfile.style.display = "none";
+    modalProfile.style.display = "block";
+});

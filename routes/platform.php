@@ -20,6 +20,8 @@ use App\Orchid\Screens\User\UserProfileScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
+use App\Orchid\Screens\ReviewsListScreen;
+
 use App\Orchid\Screens\Categories\CategoriesEditScreen;
 use App\Orchid\Screens\Categories\CategoriesListScreen;
 
@@ -40,6 +42,8 @@ use App\Orchid\Screens\Products\ProductsListScreen;
 // Main
 Route::screen('/main', PlatformScreen::class)
     ->name('platform.main');
+
+Route::screen('/reviews', ReviewsListScreen::class)->name('platform.review.list');
 
 Route::screen('/categories', CategoriesListScreen::class)->name('platform.category.list');
 Route::screen('/category/{category?}', CategoriesEditScreen::class)->name('platform.category.edit');

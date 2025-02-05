@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->references("id")->on("users");            $table->decimal('total_amount', 8, 2);
-            $table->string('status')->default('pending');
+            $table->foreignId("user_id")->references("id")->on("users");
+            $table->timestamp("created")->useCurrent();
+            $table->string("address");
             $table->timestamps();
         });
     }

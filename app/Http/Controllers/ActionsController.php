@@ -134,4 +134,18 @@ class ActionsController extends Controller
 
         return '+' . $digits; // Возвращаем номер без пробелов
     }
+
+    public function create_review(Request $request, $id)
+    {
+        $request->validate([
+            'comment' => 'required|string',
+            'rating' => 'required|integer|min:1|max:5',
+        ]);
+
+        $order = Auth::user()->orders()->findOrFail($id);
+
+        $order->review()->create($request->all());
+
+        return redirect()->route('index')->with('success', 'Отзыв успешно добавлен');
+    }
 }

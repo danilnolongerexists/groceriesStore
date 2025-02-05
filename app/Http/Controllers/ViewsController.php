@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Orchid\Attachment\Models\Attachment;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Search;
+use App\Models\Order;
+use App\Models\Review;
 
 class ViewsController extends Controller
 {
     public function index()
     {
+
         $categories = Category::all()->map(function ($category) {
             $image = Attachment::find($category->image);
             $category->image = $image ? $image->url() : null;
@@ -19,8 +24,8 @@ class ViewsController extends Controller
 
         return view("index", [
             'categories' => $categories,
-            // 'products' => Cart::all(),
         ]);
+
     }
 
     public function register()
@@ -47,7 +52,6 @@ class ViewsController extends Controller
         });
         return view("pages.cart", [
             'products' => $products,
-            // 'products' => Cart::all(),
         ]);
     }
 
@@ -74,4 +78,31 @@ class ViewsController extends Controller
 
         ]);
     }
+
+    public function search(Request $request)
+    {
+
+        $categories = Category::all()->map(function ($categoryItem) {
+            $image = Attachment::find($categoryItem->image);
+            $categoryItem->image = $image ? $image->url() : null;
+            return $categoryItem;
+        });
+
+        $products = Product::all()->map(function ($product) {
+            $image = Attachment::find($product->image);
+            $product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
+            return $product;
+        });
+
+        // Получаем значение из параметра 'query' в URL
+        $query = $request->input('query');
+
+        // Ищем продукты, название которых содержит $query
+        $products = Product::where('name', 'LIKE', '%' . $query . '%')->paginate(10);
+
+        // Передаем найденные продукты в представление
+        return view('search.results', compact('products', 'query', 'categories'));
+    }
+
+
 }

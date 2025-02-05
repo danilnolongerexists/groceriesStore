@@ -1,9 +1,6 @@
 @include('includes.header')
 
 <section class="main-section-categories">
-
-
-
     <main class="main-index">
         <h2>{{ $category->name }}</h2>
         @foreach ($products as $product)
@@ -61,6 +58,7 @@
 
     <aside>
         <div class="categories">
+            <h2>Категории</h2>
             @foreach ($categories as $category)
             <div class="category">
                 <img src="{{ $category->image }}" alt="{{ $category->name }}" style="height: 80px; object-fit: cover;">
@@ -71,7 +69,6 @@
             @endforeach
         </div>
     </aside>
-
 </section>
 
 <script src="{{ asset('js/modalProduct.js') }}"></script>

@@ -28,7 +28,7 @@
                                 $total += $product->product->price * $product->count;
                             @endphp
                             <tr>
-                                <td><img class="card-img-top" id="modal-cart-image" src="{{ $product->product->image }}" alt="{{ $product->product->name }}" style="height: 60px; object-fit: cover;"></td>
+                                <td><img class="card-img-top" id="modal-cart-image" src="{{ $product->product->image }}" alt="{{ $product->product->name }}" style="height: 60px; width:60px; object-fit: cover;"></td>
                                 <td><button id="openProductModalBtn" onclick="setproducttemp({{ json_encode($product->product->id) }})">{{ $product->product->name }}</button></td>
                                 <td>{{ $product->product->price * $product->count }} ₽</td>
                                 <td>
@@ -46,7 +46,7 @@
                                 </td>
                             </tr>
 
-                            <div id="productModal-{{ $product->product->id}}" class="modal">
+                            {{-- <div id="productModal-{{ $product->product->id}}" class="modal">
                                 <div class="modal-content">
                                     <span class="close" onclick="closeProduct()">&times;</span>
                                     <div id="modalProduct">
@@ -58,7 +58,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         @else
                             <tr>

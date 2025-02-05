@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Models\Receipt;
+use App\Models\Order;
 
 class CartController extends Controller
 {
@@ -61,29 +61,29 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    // public function checkout(Request $request)
-    // {
-    //     $basket = Basket::where('user_id', $request->user()->id)->get();
+    public function checkout(Request $request)
+    {
+        $cart = Cart::where('user_id', $request->user()->id)->get();
 
-    //     if ($basket->isEmpty()) {
-    //         return redirect()->back()->with('error', 'Ваша корзина пуста');
-    //     }
+        if ($cart->isEmpty()) {
+            return redirect()->back()->with('error', 'Ваша корзина пуста');
+        }
 
-    //     $receipt = new Receipt;
-    //     $receipt->user_id = $request->user()->id;
-    //     $receipt->address = $request->address;
-    //     $receipt->save();
+        $order = new Order;
+        $order->user_id = $request->user()->id;
+        $order->address = $request->address;
+        $order->save();
 
-    //     // Обновляем адрес пользователя
-    //     $user = $request->user();
-    //     $user->address = $request->address;
-    //     $user->save();
+        // Обновляем адрес пользователя
+        $user = $request->user();
+        $user->address = $request->address;
+        $user->save();
 
-    //     foreach ($basket as $item) {
-    //         $receipt->products()->attach($item->product_id, ['count' => $item->count]);
-    //         $item->delete();
-    //     }
+        foreach ($cart as $item) {
+            $order->products()->attach($item->product_id, ['count' => $item->count]);
+            $item->delete();
+        }
 
-    //     return redirect()->route('index')->with('success', 'Заказ оформлен');
-    // }
+        return redirect()->route('index')->with('success', 'Заказ оформлен');
+    }
 }

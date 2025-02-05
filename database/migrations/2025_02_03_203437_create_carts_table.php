@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('product_id')->references('id')->on('products');
-            $table->integer('count')->default(1);        });
+            $table->integer('count')->default(1);
+        });
     }
 
     /**

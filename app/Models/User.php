@@ -6,9 +6,12 @@ use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Platform\Models\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
+    use HasFactory, Notifiable;
     /**
      * The attributes that are mass assignable.
      *
@@ -65,4 +68,9 @@ class User extends Authenticatable
         'updated_at',
         'created_at',
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

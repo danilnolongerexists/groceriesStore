@@ -13,22 +13,28 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
-        'total_amount',
-        'status'
+        'created_at',
+        'address',
     ];
 
-    public function user()
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+
+    // public function items()
+    // {
+    //     return $this->hasMany(OrderItem::class);
+    // }
+
+    public function products()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(Product::class, 'product_receipt')
+                    ->withPivot('count');
     }
 
-    public function items()
+    public function review()
     {
-        return $this->hasMany(OrderItem::class);
-    }
-
-    public function delivery()
-    {
-        return $this->hasOne(Delivery::class);
+        return $this->hasOne(Review::class);
     }
 }
