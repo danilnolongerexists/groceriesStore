@@ -66,6 +66,8 @@ class ViewsController extends Controller
 
     public function cart()
     {
+        $this->index();
+
         $products=Cart::all()->map(function ($product) {
             $image = Attachment::find($product->product->image);
             $product->product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
@@ -78,6 +80,8 @@ class ViewsController extends Controller
 
     public function category(Category $category)
     {
+        $this->index();
+
         // Получаем все категории и обрабатываем их изображения
         $categories = Category::all()->map(function ($categoryItem) {
             $image = Attachment::find($categoryItem->image);
@@ -102,6 +106,8 @@ class ViewsController extends Controller
 
     public function event(Event $event, Category $category, Product $product)
     {
+        $this->index();
+
         // Получаем все категории и обрабатываем их изображения
         $categories = Category::all()->map(function ($categoryItem) {
             $image = Attachment::find($categoryItem->image);
@@ -128,16 +134,12 @@ class ViewsController extends Controller
     public function search(Request $request)
     {
 
+        $this->index();
+
         $categories = Category::all()->map(function ($categoryItem) {
             $image = Attachment::find($categoryItem->image);
             $categoryItem->image = $image ? $image->url() : null;
             return $categoryItem;
-        });
-
-        $products = Product::all()->map(function ($product) {
-            $image = Attachment::find($product->image);
-            $product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
-            return $product;
         });
 
         // Получаем значение из параметра 'query' в URL
@@ -145,6 +147,13 @@ class ViewsController extends Controller
 
         // Ищем продукты, название которых содержит $query
         $products = Product::where('name', 'LIKE', '%' . $query . '%')->paginate(10);
+
+        // Обрабатываем изображения для найденных продуктов
+        $products->getCollection()->transform(function ($product) {
+            $image = Attachment::find($product->image);
+            $product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
+            return $product;
+        });
 
         // Передаем найденные продукты в представление
         return view('search.results', compact('products', 'query', 'categories'));

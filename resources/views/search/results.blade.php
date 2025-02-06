@@ -20,7 +20,7 @@
         <h1>Результаты поиска для "{{ $query }}"</h1>
 
         @if ($products->isEmpty())
-            <p>Продукты не найдены.</p>
+            <p>Товары не найдены.</p>
         @else
             <ul>
                 @foreach ($products as $product)
@@ -28,7 +28,7 @@
                         <div class="card h-100">
                             <img class="card-img-top" src="{{ $product->image }}" alt="{{ $product->name }}" style="height: 200px; object-fit: cover;">
                             <div class="card-body">
-                                <button id="openProductModalBtn">{{ $product->name }}</button>
+                                <button id="openProductModalBtn" onclick="setproducttemp({{ json_encode($product->id) }})">{{ $product->name }}</button>
                                 {{-- <p class="card-title">{{ $product->name }}</p> --}}
                                 <p class="card-title">{{ $product->price }} ₽</p>
                                 @auth
@@ -59,6 +59,19 @@
                             </div>
                         </div>
                     </div>
+                    <div id="productModal-{{ $product->id}}" class="modal">
+                        <div class="modal-content">
+                            <span class="close" id="closeProduct">&times;</span>
+                            <div id="modalProduct">
+                                <h2>{{ $product->name }}</h2>
+                                <div id="modalProductInfo" style="display: flex;flex-direction: column;align-items: flex-start;">
+                                    <img class="card-img-top" src="{{ $product->image }}" alt="{{ $product->name }}" style="height: 200px; object-fit: cover;">
+                                    <p class="card-title">{{ $product->description }}</p>
+                                    <p class="card-title">{{ $product->price }} ₽</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
             </ul>
         @endif
@@ -67,3 +80,4 @@
     </main>
 
 </section>
+<script src="{{ asset('js/modalProduct.js') }}"></script>
