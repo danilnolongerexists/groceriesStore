@@ -30,23 +30,30 @@ class ViewsController extends Controller
             return $category;
         });
 
-        $user = Auth::user();
-        // Обрабатываем заказы пользователя
-        $orders = $user->orders->map(function ($order) {
-            // Обрабатываем продукты в каждом заказе
-            $order->products = $order->products->map(function ($product) {
-                $image = Attachment::find($product->image);
-                $product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
-                return $product;
-            });
-            return $order;
-        });
+        if (Auth::check()) {
+            // Получаем текущего пользователя
+            $user = Auth::user();
 
-        return view("index", [
-            'categories' => $categories,
-            'events' => $events,
-            'orders' => $orders
-        ]);
+            // Обрабатываем заказы пользователя
+            $orders = $user->orders->map(function ($order) {
+                // Обрабатываем продукты в каждом заказе
+                $order->products = $order->products->map(function ($product) {
+                    $image = Attachment::find($product->image);
+                    $product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
+                    return $product;
+                });
+                return $order;
+            });
+
+            return view("index", [
+                'orders' => $orders,
+            ]);
+        } else {
+            return view("index", [
+                'categories' => $categories,
+                'events' => $events,
+            ]);
+        }
     }
 
     public function register()

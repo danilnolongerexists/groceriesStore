@@ -183,6 +183,7 @@
                 <h2>
                     История заказов
                 </h2>
+                @auth
                     @foreach(Auth::user()->orders as $order)
                         <div class="card my-2">
                             <div class="card-body">
@@ -223,6 +224,7 @@
                             </div>
                         </div>
                     @endforeach
+                @endauth
             </div>
         </div>
     </div>
