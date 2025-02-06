@@ -18,8 +18,14 @@ class Product extends Model
         'description',
         'price',
         'image',
-        'category_id'
+        'category_id',
+        'event_id'
     ];
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
 
     public function category()
     {

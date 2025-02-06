@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Orchid\Attachment\Models\Attachment;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use App\Models\Event;
 use App\Models\Cart;
 use App\Models\Search;
 use App\Models\Order;
@@ -15,6 +17,12 @@ class ViewsController extends Controller
 {
     public function index()
     {
+        // Получаем все категории и обрабатываем их изображения
+        $events = Event::all()->map(function ($eventItem) {
+            $image = Attachment::find($eventItem->image);
+            $eventItem->image = $image ? $image->url() : null;
+            return $eventItem;
+        });
 
         $categories = Category::all()->map(function ($category) {
             $image = Attachment::find($category->image);
@@ -22,10 +30,23 @@ class ViewsController extends Controller
             return $category;
         });
 
+        $user = Auth::user();
+        // Обрабатываем заказы пользователя
+        $orders = $user->orders->map(function ($order) {
+            // Обрабатываем продукты в каждом заказе
+            $order->products = $order->products->map(function ($product) {
+                $image = Attachment::find($product->image);
+                $product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
+                return $product;
+            });
+            return $order;
+        });
+
         return view("index", [
             'categories' => $categories,
+            'events' => $events,
+            'orders' => $orders
         ]);
-
     }
 
     public function register()
@@ -76,6 +97,31 @@ class ViewsController extends Controller
             'categories' => $categories, // Добавляем переменную $categories
             'products' => $products, // Передаем список продуктов
 
+        ]);
+    }
+
+    public function event(Event $event, Category $category, Product $product)
+    {
+        // Получаем все категории и обрабатываем их изображения
+        $categories = Category::all()->map(function ($categoryItem) {
+            $image = Attachment::find($categoryItem->image);
+            $categoryItem->image = $image ? $image->url() : null;
+            return $categoryItem;
+        });
+
+        $products = $event->products()->get()->map(function ($product) {
+            $image = Attachment::find($product->image);
+            $product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
+            return $product;
+        });
+
+        // Передаем как одну категорию, так и список всех категорий в представление
+        return view("pages.event", [
+            'category' => $category,
+            'categories' => $categories, // Добавляем переменную $categories
+            'products' => $products, // Передаем список продуктов
+            'product' => $product,
+            'event' => $event
         ]);
     }
 

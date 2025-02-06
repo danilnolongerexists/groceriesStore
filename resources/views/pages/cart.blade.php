@@ -46,7 +46,7 @@
                                 </td>
                             </tr>
 
-                            {{-- <div id="productModal-{{ $product->product->id}}" class="modal">
+                            <div id="productModal-{{ $product->product->id}}" class="modal">
                                 <div class="modal-content">
                                     <span class="close" onclick="closeProduct()">&times;</span>
                                     <div id="modalProduct">
@@ -58,7 +58,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
 
                         @else
                             <tr>

@@ -29,12 +29,12 @@ class ReviewsListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('user.name', __('Пользователь'))
-                ->sort()
-                ->filter(Input::make())
-                ->render(function (User $user) {
-                    return $user->name;
-                }),
+            // TD::make('name', __('Пользователь'))
+            //     ->sort()
+            //     ->filter(Input::make())
+            //     ->render(function (Review $review) {
+            //         return $review->order()->user()->name;
+            //     }),
             TD::make('rating', __('Оценка'))
                 ->sort()
                 ->filter(Input::make())

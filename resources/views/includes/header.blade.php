@@ -8,10 +8,10 @@
     <!-- resources/views/your-view.blade.php -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-<body>
+<header>
     <div class="header">
         <nav class="header-nav">
-            <a href="{{ route('index') }}">Бригантина</a>
+            <a class="logo" href="{{ route('index') }}">Бригантина</a>
             <form action="{{ route('search') }}" method="GET" class="d-flex">
                 <input type="text" name="query" placeholder="Поиск по названию продукта..." class="form-control me-2">
                 <button type="submit" class="btn btn-primary">Поиск</button>
@@ -111,7 +111,7 @@
                     </div>
                     <button id="editProfileBtn">Редактировать профиль</button>
                     <button id="openOrdersBtn">Заказы</button>
-                    <a class="nav-link" href="{{ route('logout') }}">Выход</a>
+                    <a class="nav-link" href="{{ route('logout') }}">Выйти из аккаунта</a>
                 @endauth
             </div>
             <div id="editProfileForm" style="display: none;">
@@ -164,7 +164,7 @@
                                 <ul>
                                     @foreach($order->products as $product)
                                         <li>
-                                            <img class="card-img-top" src="{{ $product->image }}" alt="{{ $product->name }}" style="height: 200px; object-fit: cover;">
+                                            <img class="card-img-top" src="{{ $product->image }}" alt="{{ $product->name }}" style="height: 70px; object-fit: cover;">
                                             {{ $product->name }}
                                             ({{ $product->pivot->count }} шт.)
                                         </li>
@@ -225,3 +225,4 @@
         {{ session('error') }}
     </div>
 @endif
+</header>

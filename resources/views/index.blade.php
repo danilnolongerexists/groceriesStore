@@ -13,10 +13,20 @@
             </div>
             @endforeach
         </div>
-
     </aside>
 
     <main class="main-index">
+        <div class="events">
+            <h2>Акции</h2>
+            @foreach ($events as $event)
+            <div class="event">
+                <img src="{{ $event->image }}" alt="{{ $event->name }}" style="height: 200px; object-fit: cover;">
+                <div>
+                    <h2><a href="{{ route('event.show', $event) }}">{{ $event->name }}</a></h2>
+                </div>
+            </div>
+            @endforeach
+        </div>
     </main>
 
     {{-- <aside class="cart-index">

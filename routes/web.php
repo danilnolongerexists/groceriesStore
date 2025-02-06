@@ -23,6 +23,8 @@ Route::put('/profile', [ActionsController::class, 'profile_update'])->name('prof
 
 Route::get('/category/{category}', [ViewsController::class, 'category'])->name('category.show');
 
+Route::get('/event/{event}', [ViewsController::class, 'event'])->name('event.show');
+
 Route::get('/cart', [ViewsController::class, 'cart'])->name('cart')->middleware('auth');
 Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add')->middleware('auth');
 Route::post('/cart/decrease/{product}', [CartController::class, 'decrease'])->name('cart.decrease')->middleware('auth');

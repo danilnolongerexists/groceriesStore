@@ -103,6 +103,12 @@ body {
     text-decoration: none;
 }
 
+/* АКЦИИ */
+.event a {
+    text-decoration: none;
+    color: black;
+}
+
 /* Стили для форм */
 .modal form {
     display: flex;

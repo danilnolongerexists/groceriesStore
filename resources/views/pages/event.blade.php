@@ -2,7 +2,7 @@
 
 <section class="main-section-categories">
     <main class="main-index">
-        <h2>{{ $category->name }}</h2>
+        <h2>{{ $event->name }}</h2>
         @foreach ($products as $product)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
@@ -39,6 +39,7 @@
                     </div>
                 </div>
             </div>
+
             <div id="productModal-{{ $product->id}}" class="modal">
                 <div class="modal-content">
                     <span class="close" id="closeProduct">&times;</span>
@@ -52,8 +53,11 @@
                     </div>
                 </div>
             </div>
+
         @endforeach
     </main>
+
+
 
     <aside>
         <div class="categories">

@@ -41,7 +41,7 @@ class ProductsListLayout extends Table
                 ->render(function (Product $product) {
                     return $product->description;
                 }),
-            TD::make('price', __('Цена'))
+            TD::make('price', __('Цена, ₽'))
                 ->sort()
                 ->filter(Input::make())
                 ->render(function (Product $product) {
@@ -57,7 +57,7 @@ class ProductsListLayout extends Table
                 ->sort()
                 ->filter(Input::make())
                 ->render(function (Product $product) {
-                    return $product->event->name;
+                    return optional($product->event)->name ?? __(' ');
                 }),
         ];
     }
