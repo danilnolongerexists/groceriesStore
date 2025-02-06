@@ -53,6 +53,12 @@ class ProductsListLayout extends Table
                 ->render(function (Product $product) {
                     return $product->category->name;
                 }),
+            TD::make('event_id', __('Акция'))
+                ->sort()
+                ->filter(Input::make())
+                ->render(function (Product $product) {
+                    return $product->event->name;
+                }),
         ];
     }
 }

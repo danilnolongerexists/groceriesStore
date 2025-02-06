@@ -35,10 +35,13 @@ class PlatformProvider extends OrchidServiceProvider
     {
         return [
 
+            Menu::make('Акции')
+                ->icon('list')
+                ->route('platform.event.list'),
+
             Menu::make('Категории')
                 ->icon('list')
                 ->route('platform.category.list'),
-                // ->title('Products'),
 
             Menu::make('Продукты')
                 ->icon('list')

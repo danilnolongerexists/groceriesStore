@@ -8,6 +8,7 @@ use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Relation;
 use App\Models\Category;
+use App\Models\Event;
 use Orchid\Screen\Actions\Button;
 use Orchid\Support\Facades\Alert;
 use Illuminate\Http\Request;
@@ -87,6 +88,9 @@ class ProductsEditScreen extends Screen
                 Relation::make('product.category_id')
                     ->title('Категория')
                     ->fromModel(Category::class, 'name', 'id'),
+                Relation::make('product.event_id')
+                    ->title('Акция')
+                    ->fromModel(Event::class, 'name', 'id'),
             ])
         ];
     }

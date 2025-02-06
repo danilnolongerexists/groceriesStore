@@ -28,6 +28,9 @@ use App\Orchid\Screens\Categories\CategoriesListScreen;
 use App\Orchid\Screens\Products\ProductsEditScreen;
 use App\Orchid\Screens\Products\ProductsListScreen;
 
+use App\Orchid\Screens\Events\EventsEditScreen;
+use App\Orchid\Screens\Events\EventsListScreen;
+
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -44,6 +47,9 @@ Route::screen('/main', PlatformScreen::class)
     ->name('platform.main');
 
 Route::screen('/reviews', ReviewsListScreen::class)->name('platform.review.list');
+
+Route::screen('/events', EventsListScreen::class)->name('platform.event.list');
+Route::screen('/event/{event?}', EventsEditScreen::class)->name('platform.event.edit');
 
 Route::screen('/categories', CategoriesListScreen::class)->name('platform.category.list');
 Route::screen('/category/{category?}', CategoriesEditScreen::class)->name('platform.category.edit');
