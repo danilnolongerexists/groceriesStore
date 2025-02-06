@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: "Inter", serif;
+    background-color: #f2f2f2;
 }
 input {
     font-family: "Inter", serif;
@@ -10,25 +11,130 @@ button {
     font-family: "Inter", serif;
 }
 
+
+
 /* HEADER */
+/* HEADER */
+/* HEADER */
+
+header {
+    margin: 10px;
+    border-radius: 32px;
+    background-color: #fff;
+    padding: 0px 40px;
+}
+
+.logo {
+    font-size: 20px;
+    font-family: "Dela Gothic One", serif;
+    color: #ff335f;
+}
 
 .header-nav {
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
 
-.header ul {
+a {
+    text-decoration: none;
+    color: black;
+}
+
+header ul {
     display: flex;
     gap: 30px;
     padding: 0;
 }
 
-.header li {
+header li {
     list-style-type: none;
+
+}
+
+/* ПОИСКОВАЯ ФОРМА */
+
+/* Общий стиль для контейнера поиска */
+.header-search {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+    margin: 20px 0; /* Отступы сверху и снизу */
+}
+/* Стиль для самой формы */
+.header-search form {
+    position: relative;
+    width: 100%;
+    /* max-width: 600px; Максимальная ширина формы */
+    display: flex; /* Для выравнивания поля ввода и кнопки */
+}
+/* Стиль для поля ввода */
+.input-search {
+    background-color: #f2f2f2;
+    flex: 1; /* Занимает все доступное пространство */
+    padding: 12px 15px; /* Отступы внутри поля ввода */
+    font-size: 16px; /* Размер текста */
+    border: 2px solid #f2f2f2; /* Граница */
+    border-radius: 25px 0 0 25px; /* Закругленные углы только слева */
+    outline: none; /* Убираем стандартное выделение при фокусе */
+    transition: all 0.3s ease; /* Плавный переход для эффектов */
+    width: 700px;
+}
+/* Стиль для кнопки поиска */
+.button-search {
+    display: flex; /* Для центрирования иконки */
+    justify-content: center;
+    align-items: center;
+    padding: 12px 15px; /* Отступы внутри кнопки */
+    background-color: #f2f2f2; /* Цвет фона кнопки */
+    border: none; /* Убираем границу */
+    border-radius: 0 25px 25px 0; /* Закругленные углы только справа */
+    cursor: pointer; /* Курсор "рука" при наведении */
+    color: #a6a6a6; /* Цвет иконки */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Плавный переход */
+}
+/* Стиль для SVG иконки */
+.button-search svg {
+    width: 20px;
+    height: 20px;
+}
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .input-search {
+        font-size: 14px; /* Уменьшаем размер текста */
+        padding: 10px 10px; /* Уменьшаем отступы */
+    }
+
+    .button-search {
+        padding: 10px 12px; /* Уменьшаем отступы */
+    }
+
+    .button-search svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.nav-button {
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    border: none;
+    height: 46.4px;
+    width: 200px;
+    border-radius: 35px;
+    /* width: 100%; */
+    cursor: pointer;
 }
 
 /* ИНДЕКС */
+/* ИНДЕКС */
+/* ИНДЕКС */
+
+
 
 .main-section {
     display: flex;
@@ -131,7 +237,7 @@ button {
 
 .modal button {
     padding: 10px;
-    background-color: #28a745;
+    background-color: #ff335f;
     color: white;
     border: none;
     border-radius: 5px;
@@ -139,7 +245,7 @@ button {
 }
 
 .modal button:hover {
-    background-color: #218838;
+    background-color: #b22342;
 }
 
 .modal p {

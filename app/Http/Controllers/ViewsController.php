@@ -158,6 +158,4 @@ class ViewsController extends Controller
         // Передаем найденные продукты в представление
         return view('search.results', compact('products', 'query', 'categories'));
     }
-
-
 }
