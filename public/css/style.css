@@ -99,22 +99,6 @@ header li {
     width: 20px;
     height: 20px;
 }
-/* Адаптивность для мобильных устройств */
-@media (max-width: 768px) {
-    .input-search {
-        font-size: 14px; /* Уменьшаем размер текста */
-        padding: 10px 10px; /* Уменьшаем отступы */
-    }
-
-    .button-search {
-        padding: 10px 12px; /* Уменьшаем отступы */
-    }
-
-    .button-search svg {
-        width: 18px;
-        height: 18px;
-    }
-}
 
 .nav-button {
     gap: 5px;
@@ -130,16 +114,13 @@ header li {
     cursor: pointer;
 }
 
+
+
 /* ИНДЕКС */
 /* ИНДЕКС */
 /* ИНДЕКС */
 
 
-
-.main-section {
-    display: flex;
-    position: relative;
-}
 
 .main-section {
     display: flex;
@@ -154,7 +135,22 @@ header li {
 
 .main-index {
     width: 100%;
-    border: black solid;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 32px;
+    background-color: white;
+}
+
+.main-index img{
+    width: 200px;
+}
+
+.main-index h2 {
+    margin-top: 0;
+}
+
+.main-index p {
+    margin-top: 5px;
 }
 
 /* КАТЕГОРИЯ */
@@ -163,20 +159,95 @@ header li {
     display: flex;
     height: 100%;
     flex-direction: column;
+    border-radius: 32px 32px 0 0;
+    background-color: white;
+    margin: 10px;
     width: 240px;
-    border: black solid;
     gap: 15px;
+    padding: 0 15px;
+}
+
+.categorya {
+    white-space: nowrap; /* Текст не переносится */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis;
+    color: #595959;
+    font-weight: 600;
+}
+
+.category:hover {
+    color: #000;
+    filter: brightness(85%);
 }
 
 .category {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
-.category a {
-    text-decoration: none;
-    color: black;
+.category img {
+    border-radius: 15px;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
 }
+
+/* АКЦИИ */
+
+.events {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-wrap {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.event:hover{
+    color: #000;
+    filter: brightness(85%);
+}
+
+.eventa {
+    white-space: nowrap; /* Текст не переносится */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis;
+    color: #595959;
+    font-weight: 600;
+}
+
+.event img {
+    border-radius: 15px;
+    width: 212px;
+    height: 212px;
+    object-fit: cover;
+}
+
+/* ПРОДУКТЫ */
+
+#openProductModalBtn {
+    cursor: pointer;
+    white-space: nowrap; /* Текст не переносится */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis;
+    color: #595959;
+    font-weight: 600;
+}
+
+#openProductModalBtn img{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.product-notadd {
+    display: flex;
+}
+
 
 /* Стили для модального окна */
 .modal {

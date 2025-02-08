@@ -47,6 +47,8 @@ class ViewsController extends Controller
 
             return view("index", [
                 'orders' => $orders,
+                'categories' => $categories,
+                'events' => $events,
             ]);
         } else {
             return view("index", [

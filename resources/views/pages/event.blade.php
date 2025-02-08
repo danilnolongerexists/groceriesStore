@@ -61,14 +61,16 @@
 
     <aside>
         <div class="categories">
-            <h2>Категории</h2>
+            <h2 align='center'>Категории</h2>
             @foreach ($categories as $category)
-            <div class="category">
-                <img src="{{ $category->image }}" alt="{{ $category->name }}" style="height: 80px; object-fit: cover;">
-                <div>
-                    <h2><a href="{{ route('category.show', $category) }}">{{ $category->name }}</a></h2>
+            <a class="categorya" href="{{ route('category.show', $category) }}">
+                <div class="category">
+                    <img src="{{ $category->image }}" alt="{{ $category->name }}">
+                    <div>
+                        <p>{{ $category->name }}</p>
+                    </div>
                 </div>
-            </div>
+            </a>
             @endforeach
         </div>
     </aside>
