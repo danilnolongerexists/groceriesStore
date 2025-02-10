@@ -26,7 +26,7 @@ class CartController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Продукт добавлен в корзину');
+        return redirect()->back();
     }
 
     public function decrease(Request $request, Product $product)

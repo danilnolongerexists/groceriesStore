@@ -18,13 +18,12 @@
     </aside>
 
     <main class="main-index">
-        <div class="events">
-            <div class="events-title">
+            <div class="main-index-title">
                 <h2>Акции</h2>
             </div>
-            <div class="event-wrap">
+            <div class="main-index-wrap">
                 @foreach ($events as $event)
-                <a class="eventa" href="{{ route('event.show', $event) }}">
+                <a href="{{ route('event.show', $event) }}">
                     <div class="event">
                         <img src="{{ $event->image }}" alt="{{ $event->name }}">
                         <div>
@@ -34,7 +33,6 @@
                 </a>
                 @endforeach
             </div>
-        </div>
     </main>
 
 </section>

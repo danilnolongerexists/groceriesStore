@@ -11,7 +11,10 @@ button {
     font-family: "Inter", serif;
 }
 
-
+a {
+    text-decoration: none;
+    color: black;
+}
 
 /* HEADER */
 /* HEADER */
@@ -37,11 +40,6 @@ header {
     gap: 10px;
 }
 
-a {
-    text-decoration: none;
-    color: black;
-}
-
 header ul {
     display: flex;
     gap: 30px;
@@ -50,7 +48,6 @@ header ul {
 
 header li {
     list-style-type: none;
-
 }
 
 /* ПОИСКОВАЯ ФОРМА */
@@ -127,12 +124,6 @@ header li {
     position: relative;
 }
 
-.main-section-categories {
-    display: flex;
-    position: relative;
-    flex-direction: row-reverse;
-}
-
 .main-index {
     width: 100%;
     margin: 10px;
@@ -141,16 +132,21 @@ header li {
     background-color: white;
 }
 
-.main-index img{
-    width: 200px;
-}
-
 .main-index h2 {
     margin-top: 0;
 }
 
-.main-index p {
-    margin-top: 5px;
+.main-index h1 {
+    margin-top: 0;
+}
+.main-index h2 {
+    margin-top: 0;
+}
+
+.main-index-wrap {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 /* КАТЕГОРИЯ */
@@ -195,28 +191,17 @@ header li {
 
 /* АКЦИИ */
 
-.events {
-    display: flex;
-    flex-direction: column;
-}
-
-.event-wrap {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.event:hover{
-    color: #000;
-    filter: brightness(85%);
-}
-
-.eventa {
+.event {
     white-space: nowrap; /* Текст не переносится */
     overflow: hidden; /* Обрезаем всё за пределами блока */
     text-overflow: ellipsis;
     color: #595959;
     font-weight: 600;
+}
+
+.event:hover{
+    color: #000;
+    filter: brightness(85%);
 }
 
 .event img {
@@ -226,7 +211,16 @@ header li {
     object-fit: cover;
 }
 
+.event p {
+    margin-top: 5px;
+}
+
 /* ПРОДУКТЫ */
+
+.products {
+    display: flex;
+    flex-direction: column;
+}
 
 #openProductModalBtn {
     cursor: pointer;
@@ -237,15 +231,34 @@ header li {
     font-weight: 600;
 }
 
-#openProductModalBtn img{
-    height: 200px;
-    width: 200px;
+#openProductModalBtn:hover{
+    color: #000;
+    filter: brightness(85%);
+}
+
+.product img{
+    height: 212px;
+    width: 212px;
     object-fit: cover;
     border-radius: 15px;
 }
 
 .product-notadd {
     display: flex;
+    align-items: center;
+}
+
+.product button {
+    border-radius: 10px;
+    background-color: #b22342;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.product p {
+    margin: 0;
+    margin-bottom: 5px;
 }
 
 
@@ -271,6 +284,13 @@ header li {
     max-width: 400px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content img {
+    border-radius: 15px;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
 }
 
 .close {
