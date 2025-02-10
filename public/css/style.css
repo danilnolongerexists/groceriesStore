@@ -151,16 +151,39 @@ header li {
 
 /* КАТЕГОРИЯ */
 
+
+
 .categories {
     display: flex;
-    height: 100%;
+    height: 596px;
     flex-direction: column;
     border-radius: 32px 32px 0 0;
     background-color: white;
-    margin: 10px;
+    margin: 10px 10px 0 10px;
     width: 240px;
-    gap: 15px;
     padding: 0 15px;
+
+}
+
+.category-wrap {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Включаем вертикальную прокрутку */
+    overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
+    gap: 15px;
+
+    /* Скрываем скроллбар в Firefox */
+    scrollbar-width: none;
+
+    /* Скрываем скроллбар в Chrome, Safari и других браузерах на WebKit */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.categorya:hover {
+    color: #000;
+    filter: brightness(85%);
 }
 
 .categorya {
@@ -169,24 +192,20 @@ header li {
     text-overflow: ellipsis;
     color: #595959;
     font-weight: 600;
-}
-
-.category:hover {
-    color: #000;
-    filter: brightness(85%);
-}
-
-.category {
     display: flex;
     align-items: center;
     gap: 10px;
+    box-sizing: border-box; /* Учитываем padding и border в ширине */
+    width: 100%; /* Ширина равна ширине контейнера */
 }
 
-.category img {
+.category-img {
     border-radius: 15px;
     width: 70px;
     height: 70px;
     object-fit: cover;
+    /* max-width: 100%; */
+    /* height: auto; Сохраняем пропорции изображения */
 }
 
 /* АКЦИИ */

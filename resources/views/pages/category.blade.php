@@ -4,16 +4,18 @@
     <aside>
         <div class="categories">
             <h2 align='center'>Категории</h2>
-            @foreach ($categories as $category)
-            <a class="categorya" href="{{ route('category.show', $category) }}">
-                <div class="category">
-                    <img src="{{ $category->image }}" alt="{{ $category->name }}">
-                    <div>
-                        <p>{{ $category->name }}</p>
+            <div class="category-wrap">
+                @foreach ($categories as $category)
+                    <div class="category">
+                        <a class="categorya" href="{{ route('category.show', $category) }}">
+                            <img class="category-img" src="{{ $category->image }}" alt="{{ $category->name }}">
+                            <div>
+                                <p>{{ $category->name }}</p>
+                            </div>
+                        </a>
                     </div>
-                </div>
-            </a>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </aside>
 
@@ -23,7 +25,6 @@
         </div>
         <div class="main-index-wrap">
             @foreach ($products as $product)
-
                 <div class="product">
                     <a id="openProductModalBtn" onclick="setproducttemp({{ json_encode($product->id) }})">
                     <img src="{{ $product->image }}" alt="{{ $product->name }}">
