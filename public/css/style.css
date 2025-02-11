@@ -2,7 +2,10 @@ body {
     margin: 0;
     font-family: "Inter", serif;
     background-color: #f2f2f2;
+
+    overflow: hidden; /* Отключаем прокрутку всей страницы */
 }
+
 input {
     font-family: "Inter", serif;
 }
@@ -25,6 +28,12 @@ header {
     border-radius: 32px;
     background-color: #fff;
     padding: 0px 40px;
+
+    position: fixed; /* Фиксируем хедер */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .logo {
@@ -122,14 +131,31 @@ header li {
 .main-section {
     display: flex;
     position: relative;
+
+    /* margin-top: 80px; */
 }
 
 .main-index {
     width: 100%;
-    margin: 10px;
+    /* margin: 10px; */
     padding: 20px;
     border-radius: 32px;
     background-color: white;
+
+    margin-left: 300px;
+    margin-top: 116px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    height: 553px;
+    overflow-y: auto;
+
+    /* Скрываем скроллбар в Firefox */
+    scrollbar-width: none;
+
+    /* Скрываем скроллбар в Chrome, Safari и других браузерах на WebKit */
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .main-index h2 {
@@ -147,6 +173,25 @@ header li {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+
+}
+
+aside {
+    border-radius: 32px 32px 0 0;
+    display: flex;
+    height: 613px;
+    flex-direction: column;
+    background-color: white;
+    margin: 10px 10px 0 10px;
+    width: 240px;
+    padding: 0 15px;
+
+    position: fixed; /* Фиксируем aside */
+    /* top: 80px; Отступ сверху, чтобы не перекрывать хедер */
+    left: 0;
+    /* height: calc(100vh - 100px); Высота минус отступы */
+    z-index: 999; /* Убедимся, что aside выше основного контента */
+    bottom: 0;
 }
 
 /* КАТЕГОРИЯ */
@@ -154,18 +199,6 @@ header li {
 
 
 .categories {
-    display: flex;
-    height: 596px;
-    flex-direction: column;
-    border-radius: 32px 32px 0 0;
-    background-color: white;
-    margin: 10px 10px 0 10px;
-    width: 240px;
-    padding: 0 15px;
-
-}
-
-.category-wrap {
     display: flex;
     flex-direction: column;
     overflow-y: auto; /* Включаем вертикальную прокрутку */
