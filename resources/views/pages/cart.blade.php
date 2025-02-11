@@ -1,23 +1,11 @@
 @include('includes.header')
-
-<div class="cart">
-    <div>
-        <div>
+    <div class="cart">
             <h1>Корзина</h1>
             <p>Добро пожаловать на страницу вашей корзины, {{ Auth::user()->name }}!</p>
-
             @if($products->isEmpty())
                 <p>Ваша корзина пуста.</p>
             @else
                 <table class="table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
                     <tbody>
                     @php
                         $total = 0;
@@ -28,19 +16,23 @@
                                 $total += $product->product->price * $product->count;
                             @endphp
                             <tr>
-                                <td><img class="card-img-top" id="modal-cart-image" src="{{ $product->product->image }}" alt="{{ $product->product->name }}" style="height: 60px; width:60px; object-fit: cover;"></td>
-                                <td><button id="openProductModalBtn" onclick="setproducttemp({{ json_encode($product->product->id) }})">{{ $product->product->name }}</button></td>
+                                <td class="cart-product">
+                                    <a id="openProductModalBtn" onclick="setproducttemp({{ json_encode($product->product->id) }})">
+                                        <img id="modal-cart-image" src="{{ $product->product->image }}" alt="{{ $product->product->name }}" style="height: 60px; width:60px; object-fit: cover;">
+                                                {{ $product->product->name }}
+                                    </a>
+                                </td>
                                 <td>{{ $product->product->price * $product->count }} ₽</td>
                                 <td>
                                     <div style="display: flex; align-items: center;">
                                         <form action="{{ route('cart.decrease', $product->product->id) }}" method="POST" style="margin-right: 10px;">
                                             @csrf
-                                            <button type="submit" class="btn btn-danger">-</button>
+                                            <button type="submit" class="btn-cart">-</button>
                                         </form>
                                         {{ $product->count }}
                                         <form action="{{ route('cart.increase', $product->product->id) }}" method="POST" style="margin-left: 10px;">
                                             @csrf
-                                            <button type="submit" class="btn btn-success">+</button>
+                                            <button type="submit" class="btn-cart">+</button>
                                         </form>
                                     </div>
                                 </td>
@@ -69,19 +61,18 @@
                     </tbody>
                 </table>
 
-                <p>Общая сумма: {{ $total }} ₽</p>
-                <form action="{{ route('cart.checkout') }}" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <label for="address">Адрес доставки</label>
-                        <input type="text" class="form-control" id="address" name="address" value="{{ Auth::user()->address }}" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Купить</button>
-                </form>
+                <div class="cart-total">
+                    <p>Общая сумма: <b> {{ $total }} ₽</b></p>
+                    <form action="{{ route('cart.checkout') }}" method="POST">
+                        @csrf
+                        <div class="input-group">
+                            <input type="text" class="input" id="address" name="address" value="{{ Auth::user()->address }}" required>
+                            <label class="label" for="address">Адрес доставки</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Купить</button>
+                    </form>
+                </div>
             @endif
-        </div>
+        @include('includes.footer')
     </div>
-</div>
-
-
 <script src="{{ asset('js/modalProduct.js') }}"></script>

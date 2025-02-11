@@ -19,6 +19,51 @@ a {
     color: black;
 }
 
+/* INPUT */
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input,
+.input {
+    /* width: 100%; */
+    padding: 15px 10px 5px; /* Увеличиваем padding сверху для размещения label */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    outline: none;
+}
+
+.input:focus {
+    border-color: #ff335f;
+}
+
+.label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-70%);
+    font-size: 16px;
+    color: #aaa;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+    top: 0;
+    font-size: 12px;
+    color: #ff335f;
+    background-color: #fff; /* Чтобы label не пересекался с границей input */
+    padding: 0 5px;
+    left: 5px;
+}
+
+
+
 /* HEADER */
 /* HEADER */
 /* HEADER */
@@ -403,16 +448,61 @@ aside {
 }
 
 
+
+/* КОРЗИНА */
+/* КОРЗИНА */
 /* КОРЗИНА */
 
+
+
 .cart {
-    display: flex;
-    border-style: solid;
-    border-width: 5px;
-    border-color: red;
+    /* width: 100%; */
+    /* margin: 10px; */
+    padding: 20px;
+    border-radius: 32px;
+    background-color: white;
+
+    margin-left: 10px;
+    margin-top: 116px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    height: 100%;
+    max-height: 553px;
+    overflow-y: auto;
+
+    /* Скрываем скроллбар в Firefox */
+    scrollbar-width: none;
+
+    /* Скрываем скроллбар в Chrome, Safari и других браузерах на WebKit */
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
+.cart-wrap {
+    display: flex;
+}
 
+td img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+td a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-cart {
+    border-radius: 10px;
+    background-color: #b22342;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
 
 /* FOOTER */
 /* FOOTER */
@@ -425,6 +515,7 @@ footer {
     border-radius: 32px;
     background-color: #f2f2f2;
     bottom: 0;
+
 }
 
 footer a {

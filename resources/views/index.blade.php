@@ -15,7 +15,3 @@
         @include('includes.footer')
     </main>
 </section>
-
-
-
-

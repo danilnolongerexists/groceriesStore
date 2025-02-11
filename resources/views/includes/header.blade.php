@@ -63,15 +63,16 @@
                 <h2>Авторизация</h2>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
+                    <div class="profile-wrap">
+                        <div class="input-group">
+                            <input type="phone" class="input" id="phone-log" placeholder="" required name="user[phone]">
+                            <label class="label" for="phone">Номер телефона</label>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="phone">Номер телефона</label>
-                        <input type="phone" class="form-control" id="phone-log" placeholder="Введите номер телефона" required name="user[phone]">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Пароль</label>
-                        <input type="password" class="form-control" id="password" placeholder="Введите пароль" required name="user[password]">
+                        <div class="input-group">
+                            <input type="password" class="input" id="password" placeholder="" required name="user[password]">
+                            <label class="label" for="password">Пароль</label>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Войти</button>
@@ -85,29 +86,29 @@
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
-                    <div class="form-group">
-                        <label for="name">Имя</label>
-                        <input type="text" class="form-control" id="name" placeholder="Введите имя" required name="user[name]">
+                    <div class="input-group">
+                        <input type="text" class="input" id="name" placeholder="" required name="user[name]">
+                        <label class="label" for="name">Имя</label>
                     </div>
 
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Введите почту" required name="user[email]">
+                    <div class="input-group">
+                        <input type="email" class="input" id="email" placeholder="" required name="user[email]">
+                        <label class="label" for="email">Email</label>
                     </div>
 
-                    <div class="form-group">
-                        <label for="phone">Номер телефона</label>
-                        <input type="phone" class="form-control" id="phone-reg" placeholder="Введите номер телефона" required name="user[phone]">
+                    <div class="input-group">
+                        <input type="phone" class="input" id="phone-reg" placeholder="" required name="user[phone]">
+                        <label class="label" for="phone">Номер телефона</label>
                     </div>
 
-                    <div class="form-group">
-                        <label for="password">Пароль</label>
-                        <input type="password" class="form-control" id="password" placeholder="Введите пароль" required name="user[password]">
+                    <div class="input-group">
+                        <input type="password" class="input" id="password" placeholder="" required name="user[password]">
+                        <label class="label" for="password">Пароль</label>
                     </div>
 
-                    <div class="form-group">
-                        <label for="password_confirmation">Подтверждение пароля</label>
-                        <input type="password" class="form-control" id="password_confirmation" placeholder="Повторите пароль" required name="user[password_confirmation]">
+                    <div class="input-group">
+                        <input type="password" class="input" id="password_confirmation" placeholder="" required name="user[password_confirmation]">
+                        <label class="label" for="password_confirmation">Подтверждение пароля</label>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Зарегистироваться</button>
@@ -140,25 +141,25 @@
                     @csrf
                     @method('PUT')
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="name">Имя</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}">
+                        <div class="input-group">
+                            <input class="input" type="text" class="form-control" id="name" name="name" placeholder="" value="{{ Auth::user()->name }}">
+                            <label class="label" for="name">Имя</label>
                         </div>
-                        <div class="form-group">
-                            <label for="phone">Номер телефона</label>
-                            <input type="phone" class="form-control" id="phone-upd" placeholder="Введите номер телефона" name="phone" value="{{ Auth::user()->phone }}">
+                        <div class="input-group">
+                            <input class="input" type="phone" class="form-control" id="phone-upd" placeholder="" name="phone" value="{{ Auth::user()->phone }}">
+                            <label class="label" for="phone">Номер телефона</label>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}">
+                        <div class="input-group">
+                            <input class="input" type="email" class="form-control" id="email" name="email" placeholder="" value="{{ Auth::user()->email }}">
+                            <label class="label" for="email">Email</label>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Пароль</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Введите новый пароль">
+                        <div class="input-group">
+                            <input class="input" type="password" class="form-control" id="password" name="password" placeholder="">
+                            <label class="label" for="password">Пароль</label>
                         </div>
-                        <div class="form-group">
-                            <label for="address">Адрес</label>
-                            <input type="address" class="form-control" id="address" name="address" placeholder="Введите новый адрес" value="{{ Auth::user()->address }}">
+                        <div class="input-group">
+                            <input class="input" type="address" class="form-control" id="address" name="address" placeholder="" value="{{ Auth::user()->address }}">
+                            <label class="label" for="address">Адрес</label>
                         </div>
                     </div>
                     <div class="modal-footer">
