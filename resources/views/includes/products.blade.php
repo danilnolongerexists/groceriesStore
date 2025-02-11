@@ -37,7 +37,7 @@
     </div>
     <div id="productModal-{{ $product->id}}" class="modal">
         <div class="modal-content">
-            <span class="close" id="closeProduct">&times;</span>
+            <span class="close" id="closeProduct" onclick="closeProduct()">&times;</span>
             <div id="modalProduct">
                 <h2>{{ $product->name }}</h2>
                 <div id="modalProductInfo" style="display: flex;flex-direction: column;align-items: flex-start;">
