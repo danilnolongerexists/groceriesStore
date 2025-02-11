@@ -18,23 +18,23 @@
     </aside>
 
     <main class="main-index">
-            <div class="main-index-title">
-                <h2>Акции</h2>
-            </div>
-            <div class="main-index-wrap">
-                @foreach ($events as $event)
-                <a href="{{ route('event.show', $event) }}">
-                    <div class="event">
-                        <img src="{{ $event->image }}" alt="{{ $event->name }}">
-                        <div>
-                            <p>{{ $event->name }}</p>
-                        </div>
+        <div class="main-index-title">
+            <h2>Акции</h2>
+        </div>
+        <div class="main-index-wrap">
+            @foreach ($events as $event)
+            <a href="{{ route('event.show', $event) }}">
+                <div class="event">
+                    <img src="{{ $event->image }}" alt="{{ $event->name }}">
+                    <div>
+                        <p>{{ $event->name }}</p>
                     </div>
-                </a>
-                @endforeach
-            </div>
+                </div>
+            </a>
+            @endforeach
+        </div>
+        @include('includes.footer')
     </main>
-
 </section>
 
 
