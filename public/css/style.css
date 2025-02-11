@@ -166,9 +166,6 @@ header li {
 .main-index h1 {
     margin-top: 0;
 }
-.main-index h2 {
-    margin-top: 0;
-}
 
 .main-index-wrap {
     display: flex;
@@ -195,8 +192,6 @@ aside {
 }
 
 /* КАТЕГОРИЯ */
-
-
 
 .categories {
     display: flex;
@@ -325,6 +320,7 @@ aside {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1001; /* Должен быть выше header и aside */
 }
 
 .modal-content {
