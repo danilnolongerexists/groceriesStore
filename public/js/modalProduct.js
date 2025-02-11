@@ -2,6 +2,8 @@
 // openProductmodalProductBtn.addEventListener("click", () => {
 //     productmodalProduct.style.display = "block";
 // });
+// const closeProduct = document.getElementById("closeProduct");
+
 let modalProduct;
 function setproducttemp(product_id) {
     modalProduct = document.getElementById("productModal-"+product_id);

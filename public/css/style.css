@@ -146,7 +146,8 @@ header li {
     margin-top: 116px;
     margin-right: 10px;
     margin-bottom: 10px;
-    height: 553px;
+    height: 100%;
+    max-height: 553px;
     overflow-y: auto;
 
     /* Скрываем скроллбар в Firefox */
@@ -173,8 +174,6 @@ header li {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-
-
 }
 
 aside {
@@ -426,20 +425,39 @@ aside {
 
 
 footer {
-
+    margin-top: 30px;
     border-radius: 32px;
     background-color: #f2f2f2;
+    bottom: 0;
+}
 
+footer a {
+    white-space: nowrap; /* Текст не переносится */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis;
+    color: #595959;
+    font-weight: 600;
+}
+
+footer a:hover{
+    color: #000;
+    filter: brightness(85%);
 }
 
 .footer-wrap {
     display: flex;
     padding: 20px;
-    gap: 40px;
+    gap: 45px;
+    align-items: center;
 }
 
 .footer-links {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.footer-icons {
+    display: flex;
+    gap: 20px;
 }
