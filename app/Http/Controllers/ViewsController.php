@@ -155,7 +155,7 @@ class ViewsController extends Controller
         $query = $request->input('query');
 
         // Ищем продукты, название которых содержит $query
-        $products = Product::where('name', 'LIKE', '%' . $query . '%')->paginate(10);
+        $products = Product::where('name', 'LIKE', '%' . $query . '%')->paginate();
 
         // Обрабатываем изображения для найденных продуктов
         $products->getCollection()->transform(function ($product) {

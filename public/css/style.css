@@ -384,6 +384,19 @@ aside {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+#modalProductInfo {
+    display: flex;
+    gap: 20px;
+}
+
+#modalProductInfo h2, p{
+    margin: 0;
+}
+
+#modalProductInfo div {
+    gap: 10px;
+}
+
 .modal-content img {
     border-radius: 15px;
     width: 200px;
@@ -435,11 +448,6 @@ aside {
 
 .modal button:hover {
     background-color: #b22342;
-}
-
-.modal p {
-    text-align: center;
-    margin-top: 10px;
 }
 
 .modal a {

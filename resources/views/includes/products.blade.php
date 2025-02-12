@@ -39,11 +39,15 @@
         <div class="modal-content">
             <span class="close" id="closeProduct" onclick="closeProduct()">&times;</span>
             <div id="modalProduct">
-                <h2>{{ $product->name }}</h2>
-                <div id="modalProductInfo" style="display: flex;flex-direction: column;align-items: flex-start;">
-                    <img src="{{ $product->image }}" alt="{{ $product->name }}">
-                    <p class="card-title">{{ $product->description }}</p>
-                    <p class="card-title">{{ $product->price }} ₽</p>
+                <div id="modalProductInfo">
+                    <div>
+                        <img src="{{ $product->image }}" alt="{{ $product->name }}">
+                    </div>
+                    <div class="modalProductText">
+                        <h2>{{ $product->name }}</h2>
+                        <p>{{ $product->description }}</p>
+                        <p><b>{{ $product->price }} ₽</b> за штуку</p>
+                    </div>
                 </div>
             </div>
         </div>
