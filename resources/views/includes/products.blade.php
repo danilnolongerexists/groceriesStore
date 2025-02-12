@@ -13,15 +13,15 @@
                     ->first();
             @endphp
             @if ($inCart)
-                <div style="display: flex; align-items: center;">
-                    <form action="{{ route('cart.decrease', $product) }}" method="POST" style="margin-right: 10px;">
+                <div class="inCart">
+                    <form class="cart-decrease" action="{{ route('cart.decrease', $product) }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-danger">-</button>
+                        <button type="submit">-</button>
                     </form>
                     {{ $product->price }} ₽
-                    <form action="{{ route('cart.increase', $product) }}" method="POST" style="margin-left: 10px;">
+                    <form class="cart-increase" action="{{ route('cart.increase', $product) }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-success">+</button>
+                        <button type="submit" >+</button>
                         ({{ $inCart->count }} шт.)
                     </form>
                 </div>
@@ -30,7 +30,7 @@
                 <form class="product-notadd" action="{{ route('cart.add', $product) }}" method="POST">
                     @csrf
                     {{ $product->price }} ₽ &nbsp;
-                    <button type="submit" class="btn btn-primary"> +</button>
+                    <button type="submit"> +</button>
                 </form>
             @endif
         @endauth

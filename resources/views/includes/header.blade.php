@@ -39,7 +39,7 @@
                 <ul>
                     @auth
                         <li>
-                            <a class="nav-link" href="{{ route('cart') }}">
+                            <a href="{{ route('cart') }}">
                                 <button class="nav-button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M21.822 7.431A1 1 0 0 0 21 7H7.333L6.179 4.23A1.994 1.994 0 0 0 4.333 3H2v2h2.333l4.744 11.385A1 1 0 0 0 10 17h8c.417 0 .79-.259.937-.648l3-8a1 1 0 0 0-.115-.921zM17.307 15h-6.64l-2.5-6h11.39l-2.25 6z"></path><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="17.5" cy="19.5" r="1.5"></circle></svg>
                                 Корзина
@@ -86,7 +86,7 @@
             </div>
 
             <!-- Форма регистрации -->
-            <div id="registerForm" style="display: none;">
+            <div id="registerForm">
                 <h2>Регистрация</h2>
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
@@ -116,7 +116,7 @@
                         <label class="label" for="password_confirmation">Подтверждение пароля</label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Зарегистироваться</button>
+                    <button type="submit">Зарегистироваться</button>
                 </form>
                 <p>Уже есть аккаунт? <a href="#" id="switchToLogin">Войти</a></p>
             </div>
@@ -129,17 +129,17 @@
             <div id="modalProfile">
                 @auth
                     <h2>{{ Auth::user()->phone }}</h2>
-                    <div id="modalProfileInfo" style="display: flex;flex-direction: column;align-items: flex-start;">
+                    <div id="modalProfileInfo">
                         <p>{{ Auth::user()->name }}</p>
                         <p>{{ Auth::user()->email }}</p>
                         <p>{{ Auth::user()->address }}</p>
                     </div>
                     <button id="editProfileBtn">Редактировать профиль</button>
                     <button id="openOrdersBtn">Заказы</button>
-                    <a class="nav-link" href="{{ route('logout') }}">Выйти из аккаунта</a>
+                    <a href="{{ route('logout') }}">Выйти из аккаунта</a>
                 @endauth
             </div>
-            <div id="editProfileForm" style="display: none;">
+            <div id="editProfileForm">
                 <h2>Редактировать профиль</h2>
                 @auth
                 <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
@@ -147,23 +147,23 @@
                     @method('PUT')
                     <div class="modal-body">
                         <div class="input-group">
-                            <input class="input" type="text" class="form-control" id="name" name="name" placeholder="" value="{{ Auth::user()->name }}">
+                            <input class="input" type="text" id="name" name="name" placeholder="" value="{{ Auth::user()->name }}">
                             <label class="label" for="name">Имя</label>
                         </div>
                         <div class="input-group">
-                            <input class="input" type="phone" class="form-control" id="phone-upd" placeholder="" name="phone" value="{{ Auth::user()->phone }}">
+                            <input class="input" type="phone" id="phone-upd" placeholder="" name="phone" value="{{ Auth::user()->phone }}">
                             <label class="label" for="phone">Номер телефона</label>
                         </div>
                         <div class="input-group">
-                            <input class="input" type="email" class="form-control" id="email" name="email" placeholder="" value="{{ Auth::user()->email }}">
+                            <input class="input" type="email" id="email" name="email" placeholder="" value="{{ Auth::user()->email }}">
                             <label class="label" for="email">Email</label>
                         </div>
                         <div class="input-group">
-                            <input class="input" type="password" class="form-control" id="password" name="password" placeholder="">
+                            <input class="input" type="password" id="password" name="password" placeholder="">
                             <label class="label" for="password">Пароль</label>
                         </div>
                         <div class="input-group">
-                            <input class="input" type="address" class="form-control" id="address" name="address" placeholder="" value="{{ Auth::user()->address }}">
+                            <input class="input" type="address" id="address" name="address" placeholder="" value="{{ Auth::user()->address }}">
                             <label class="label" for="address">Адрес</label>
                         </div>
                     </div>
@@ -175,22 +175,22 @@
 
                 <button id="cancelEditBtn">Отмена</button>
             </div>
-            <div id="ordersProfile" style="display: none;">
+            <div id="ordersProfile">
                 <button id="cancelOrdersBtn">Назад</button>
                 <h2>
                     История заказов
                 </h2>
                 @auth
                     @foreach(Auth::user()->orders as $order)
-                        <div class="card my-2">
-                            <div class="card-body">
-                                <h3 class="card-title">Заказ от {{ $order->created }}</h5>
-                                <p class="card-text">Адрес доставки: {{ $order->address }}</p>
-                                <p class="card-text">Товары:</p>
+                        <div>
+                            <div>
+                                <h3>Заказ от {{ $order->created }}</h3>
+                                <p>Адрес доставки: {{ $order->address }}</p>
+                                <p>Товары:</p>
                                 <ul>
                                     @foreach($order->products as $product)
                                         <li>
-                                            <img class="card-img-top" src="{{ $product->image }}" alt="{{ $product->name }}" style="height: 70px; object-fit: cover;">
+                                            <img class="order-img" src="{{ $product->image }}" alt="{{ $product->name }}">
                                             {{ $product->name }}
                                             ({{ $product->pivot->count }} шт.)
                                         </li>
@@ -199,11 +199,11 @@
                                 @if(empty($order->review))
                                     <form action="{{ route('orders.review', $order->id) }}" method="POST">
                                         @csrf
-                                        <div class="form-group">
+                                        <div>
                                             <label for="comment">Оставьте отзыв:</label>
-                                            <textarea class="form-control" id="comment" name="comment"></textarea>
+                                            <textarea id="comment" name="comment"></textarea>
                                         </div>
-                                        <div class="form-group">
+                                        <div>
                                             <label>Оценка:</label>
                                             <div>
                                                 @for($i = 1; $i <= 5; $i++)
@@ -212,7 +212,7 @@
                                                 @endfor
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Отправить отзыв</button>
+                                        <button type="submit">Отправить отзыв</button>
                                     </form>
                                 @else
                                     <p>Ваш отзыв: {{ $order->review->comment }}</p>
@@ -231,16 +231,6 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/modalProfile.js') }}"></script>
 
-{{-- @if($errors -> any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors -> all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif --}}
-
 <script>
     // Проверяем наличие ошибок валидации
     @if ($errors->any())
@@ -254,7 +244,5 @@
         toastr.success("{{ session('success') }}");
     @endif
 </script>
-
-{{-- <script src="{{ asset ('js/notifications.js') }}"></script> --}}
 
 </header>
