@@ -453,6 +453,47 @@ aside {
 }
 
 
+
+
+/* ЗАКАЗЫ */
+/* ЗАКАЗЫ */
+/* ЗАКАЗЫ */
+
+
+
+
+
+.star-rating {
+    display: inline-block;
+    font-size: 24px;
+    direction: rtl;
+}
+.star-rating-after {
+    display: inline-block;
+    font-size: 24px;
+    color: #ffcc00;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    color: #ccc;
+    cursor: pointer;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: #ffcc00;
+}
+
+.star-rating input:checked ~ label {
+    color: #ffcc00;
+}
+
+
 .order-img {
     height: 70px;
     object-fit: cover;

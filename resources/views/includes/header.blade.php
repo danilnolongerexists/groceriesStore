@@ -205,10 +205,10 @@
                                         </div>
                                         <div>
                                             <label>Оценка:</label>
-                                            <div>
-                                                @for($i = 1; $i <= 5; $i++)
+                                            <div class="star-rating">
+                                                @for($i = 5; $i >= 1; $i--)
                                                     <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}>
-                                                    <label for="star{{ $i }}">{{ $i }}</label>
+                                                    <label for="star{{ $i }}">&#9733;</label>
                                                 @endfor
                                             </div>
                                         </div>
@@ -216,7 +216,17 @@
                                     </form>
                                 @else
                                     <p>Ваш отзыв: {{ $order->review->comment }}</p>
-                                    <p>Ваша оценка: {{ $order->review->rating }} из 5</p>
+                                    <p>Ваша оценка:
+                                        <span class="star-rating-after">
+                                            @for($i = 1; $i <= 5; $i++)
+                                                @if($i <= $order->review->rating)
+                                                    &#9733;
+                                                @else
+                                                    &#9734;
+                                                @endif
+                                            @endfor
+                                        </span>
+                                    </p>
                                 @endif
                             </div>
                         </div>
