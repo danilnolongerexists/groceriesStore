@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Проверка наличия flash-сообщений
-    const successMessage = "{{ session('success') }}";
+    const successMessage = "<?php echo session('success') ?>";
     const errorMessage = "{{ session('error') }}";
 
     if (successMessage) {

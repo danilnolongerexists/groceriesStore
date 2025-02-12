@@ -2,7 +2,6 @@ body {
     margin: 0;
     font-family: "Inter", serif;
     background-color: #f2f2f2;
-
     overflow: hidden; /* Отключаем прокрутку всей страницы */
 }
 
@@ -17,6 +16,13 @@ button {
 a {
     text-decoration: none;
     color: black;
+}
+
+/* УВЕДОМЛЕНИЯ */
+
+/* Убираем тень для всех уведомлений */
+.toast {
+    box-shadow: none !important;
 }
 
 /* INPUT */

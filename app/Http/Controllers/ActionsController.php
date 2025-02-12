@@ -15,40 +15,46 @@ class ActionsController extends Controller
 {
     public function register(Request $request)
     {
-        $request->validate([
-            'user.name' => 'required',
-            'user.email'=> 'required|email',
-            'user.phone' => 'required|phone:ru|unique:users,phone', // Новое правило для телефона
-            'user.password' => 'required|min:8|alpha_dash|confirmed',
-        ], [
-            'user.name.required' => 'Поле "Имя" обязательно для заполнения',
-            'user.email.reqired' => 'Поле "Электронная почта" обязательно для заполнения',
-            'user.email.email'=> 'Поле "Электронная почта" должно быть предоставлено в виде валидного адреса электронной почты',
-            'user.phone.required' => 'Поле "Телефон" обязательно для заполнения',
-            'user.phone.phone' => 'Номер телефона должен быть в формате +7 999 999 99 99',
-            'user.phone.unique' => 'Данный номер телефона уже зарегистрирован',
-            'user.password.required'=> 'Поле "Пароль" обязательно для заполнения',
-            'user.password.min'=> 'Поле "Пароль" должно быть не менее, чем 8 символов',
-            'user.password.alpha_dash'=> 'Поле "Пароль" должно содержать только строчные и прописные символы латиницы, цифры, а также символы "-" и "_"',
-            'user.password.confirmed'=> 'Поле "Пароль" и "Повторите пароль" не совпадает',
-        ]);
+        try {
+            // Валидация данных
+            $request->validate([
+                'user.name' => 'required',
+                'user.email' => 'required|email',
+                'user.phone' => 'required|phone:ru|unique:users,phone', // Новое правило для телефона
+                'user.password' => 'required|min:8|alpha_dash|confirmed',
+            ], [
+                'user.name.required' => 'Поле "Имя" обязательно для заполнения',
+                'user.email.required' => 'Поле "Электронная почта" обязательно для заполнения',
+                'user.email.email' => 'Поле "Электронная почта" должно быть предоставлено в виде валидного адреса электронной почты',
+                'user.phone.required' => 'Поле "Телефон" обязательно для заполнения',
+                'user.phone.phone' => 'Номер телефона должен быть в формате +7 999 999 99 99',
+                'user.phone.unique' => 'Данный номер телефона уже зарегистрирован',
+                'user.password.required' => 'Поле "Пароль" обязательно для заполнения',
+                'user.password.min' => 'Поле "Пароль" должно быть не менее, чем 8 символов',
+                'user.password.alpha_dash' => 'Поле "Пароль" должно содержать только строчные и прописные символы латиницы, цифры, а также символы "-" и "_"',
+                'user.password.confirmed' => 'Поле "Пароль" и "Повторите пароль" не совпадает',
+            ]);
 
-        // Форматируем телефон для записи в БД (без пробелов)
-        $cleanPhone = $this->cleanPhoneNumber($request->input('user.phone'));
+            // Форматируем телефон для записи в БД (без пробелов)
+            $cleanPhone = $this->cleanPhoneNumber($request->input('user.phone'));
 
-        $user = User::create([
-            'name' => $request->input('user.name'),
-            'email' => $request->input('user.email'),
-            'phone' => $cleanPhone,
-            'password' => bcrypt($request->input('user.password')),
-        ]);
+            // Создаем пользователя
+            $user = User::create([
+                'name' => $request->input('user.name'),
+                'email' => $request->input('user.email'),
+                'phone' => $cleanPhone,
+                'password' => bcrypt($request->input('user.password')),
+            ]);
 
-        Auth::login($user);
-        return redirect('/');
+            // Авторизуем пользователя
+            Auth::login($user);
 
-        // $user = User::create($request -> input('user'));
-        // Auth::login($user);
-        // return redirect('/');
+            // Возвращаем успешное уведомление
+            return redirect('/')->with('success', 'Регистрация прошла успешно!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Если валидация не прошла, возвращаемся назад с ошибками
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
     }
 
     public function logout()
@@ -77,7 +83,11 @@ class ActionsController extends Controller
         $cleanPhone = $this->cleanPhoneNumber($request->input('user.phone'));
 
         if(Auth::attempt(['phone' => $cleanPhone, 'password' => $request->input('user.password')])) {
-            return redirect('/');
+            $user = Auth::user();
+
+        // Формируем сообщение с именем пользователя
+            $message = 'С возвращением, ' . $user->name . '!';
+            return redirect('/')->with('success', $message);
         } else {
             return back()->withErrors([
                 'user.phone' => 'Предоставленный номер телефона или пароль не подходят'
