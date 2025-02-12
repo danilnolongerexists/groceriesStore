@@ -493,10 +493,14 @@ aside {
     color: #ffcc00;
 }
 
-
 .order-img {
-    height: 70px;
+    height: 20px;
     object-fit: cover;
+}
+
+.review-after {
+    display: flex;
+    flex-direction: column;
 }
 
 /* АКЦИИ */

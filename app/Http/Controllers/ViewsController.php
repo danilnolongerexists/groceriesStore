@@ -82,9 +82,33 @@ class ViewsController extends Controller
             $product->product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
             return $product;
         });
-        return view("pages.cart", [
-            'products' => $products,
-        ]);
+
+
+        if (Auth::check()) {
+            // Получаем текущего пользователя
+            $user = Auth::user();
+
+            // Обрабатываем заказы пользователя
+            $orders = $user->orders->map(function ($order) {
+                // Обрабатываем продукты в каждом заказе
+                $order->products = $order->products->map(function ($product) {
+                    $image = Attachment::find($product->image);
+                    $product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
+                    return $product;
+                });
+                return $order;
+            });
+
+            return view("pages.cart", [
+                'orders' => $orders,
+                'products' => $products
+            ]);
+        } else {
+            return view("pages.cart", [
+                'products' => $products,
+            ]);
+        }
+
     }
 
     public function category(Category $category)
@@ -104,13 +128,35 @@ class ViewsController extends Controller
             return $product;
         });
 
-        // Передаем как одну категорию, так и список всех категорий в представление
-        return view("pages.category", [
-            'category' => $category,
-            'categories' => $categories, // Добавляем переменную $categories
-            'products' => $products, // Передаем список продуктов
+        if (Auth::check()) {
+            // Получаем текущего пользователя
+            $user = Auth::user();
 
+            // Обрабатываем заказы пользователя
+            $orders = $user->orders->map(function ($order) {
+                // Обрабатываем продукты в каждом заказе
+                $order->products = $order->products->map(function ($product) {
+                    $image = Attachment::find($product->image);
+                    $product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
+                    return $product;
+                });
+                return $order;
+            });
+
+            return view("pages.category", [
+                'orders' => $orders,
+                'categories' => $categories,
+                'category' => $category,
+                'products' => $products
+            ]);
+        } else {
+            // Передаем как одну категорию, так и список всех категорий в представление
+            return view("pages.category", [
+                'category' => $category,
+                'categories' => $categories, // Добавляем переменную $categories
+                'products' => $products, // Передаем список продуктов
         ]);
+        }
     }
 
     public function event(Event $event, Category $category, Product $product)
@@ -130,14 +176,39 @@ class ViewsController extends Controller
             return $product;
         });
 
-        // Передаем как одну категорию, так и список всех категорий в представление
-        return view("pages.event", [
-            'category' => $category,
-            'categories' => $categories, // Добавляем переменную $categories
-            'products' => $products, // Передаем список продуктов
-            'product' => $product,
-            'event' => $event
-        ]);
+        if (Auth::check()) {
+            // Получаем текущего пользователя
+            $user = Auth::user();
+
+            // Обрабатываем заказы пользователя
+            $orders = $user->orders->map(function ($order) {
+                // Обрабатываем продукты в каждом заказе
+                $order->products = $order->products->map(function ($product) {
+                    $image = Attachment::find($product->image);
+                    $product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
+                    return $product;
+                });
+                return $order;
+            });
+
+            return view("pages.event", [
+                'orders' => $orders,
+                'category' => $category,
+                'categories' => $categories, // Добавляем переменную $categories
+                'products' => $products, // Передаем список продуктов
+                'product' => $product,
+                'event' => $event
+            ]);
+        } else {
+            // Передаем как одну категорию, так и список всех категорий в представление
+            return view("pages.event", [
+                'category' => $category,
+                'categories' => $categories, // Добавляем переменную $categories
+                'products' => $products, // Передаем список продуктов
+                'product' => $product,
+                'event' => $event
+            ]);
+        }
     }
 
     public function search(Request $request)
@@ -164,7 +235,25 @@ class ViewsController extends Controller
             return $product;
         });
 
-        // Передаем найденные продукты в представление
-        return view('search.results', compact('products', 'query', 'categories'));
+        if (Auth::check()) {
+            // Получаем текущего пользователя
+            $user = Auth::user();
+
+            // Обрабатываем заказы пользователя
+            $orders = $user->orders->map(function ($order) {
+                // Обрабатываем продукты в каждом заказе
+                $order->products = $order->products->map(function ($product) {
+                    $image = Attachment::find($product->image);
+                    $product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
+                    return $product;
+                });
+                return $order;
+            });
+
+            return view('search.results', compact('products', 'query', 'categories', 'orders'));
+        } else {
+                    // Передаем найденные продукты в представление
+            return view('search.results', compact('products', 'query', 'categories'));
+        }
     }
 }

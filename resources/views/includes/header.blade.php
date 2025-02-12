@@ -181,56 +181,61 @@
                     История заказов
                 </h2>
                 @auth
-                    @foreach(Auth::user()->orders as $order)
-                        <div>
+                    @if ($orders->isEmpty())
+                        <p>Вы ещё ничего не заказали!</p>
+                    @else
+                        @foreach(Auth::user()->orders as $order)
                             <div>
-                                <h3>Заказ от {{ $order->created }}</h3>
-                                <p>Адрес доставки: {{ $order->address }}</p>
-                                <p>Товары:</p>
-                                <ul>
-                                    @foreach($order->products as $product)
-                                        <li>
-                                            <img class="order-img" src="{{ $product->image }}" alt="{{ $product->name }}">
-                                            {{ $product->name }}
-                                            ({{ $product->pivot->count }} шт.)
-                                        </li>
-                                    @endforeach
-                                </ul>
-                                @if(empty($order->review))
-                                    <form action="{{ route('orders.review', $order->id) }}" method="POST">
-                                        @csrf
-                                        <div>
-                                            <label for="comment">Оставьте отзыв:</label>
-                                            <textarea id="comment" name="comment"></textarea>
-                                        </div>
-                                        <div>
-                                            <label>Оценка:</label>
-                                            <div class="star-rating">
-                                                @for($i = 5; $i >= 1; $i--)
-                                                    <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}>
-                                                    <label for="star{{ $i }}">&#9733;</label>
-                                                @endfor
+                                <div>
+                                    <h2>Заказ от {{ $order->created }}</h2>
+                                    <p>Адрес доставки: {{ $order->address }}</p>
+                                    <ul>
+                                        @foreach($order->products as $product)
+                                            <li>
+                                                <img class="order-img" src="{{ $product->image }}" alt="{{ $product->name }}">
+                                                {{ $product->name }}
+                                                ({{ $product->pivot->count }} шт.)
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                    @if(empty($order->review))
+                                        <form action="{{ route('orders.review', $order->id) }}" method="POST">
+                                            @csrf
+                                            <div>
+                                                <label for="comment">Оставьте отзыв:</label>
+                                                <textarea id="comment" name="comment"></textarea>
                                             </div>
+                                            <div>
+                                                <label>Оценка:</label>
+                                                <div class="star-rating">
+                                                    @for($i = 5; $i >= 1; $i--)
+                                                        <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}>
+                                                        <label for="star{{ $i }}">&#9733;</label>
+                                                    @endfor
+                                                </div>
+                                            </div>
+                                            <button type="submit">Отправить отзыв</button>
+                                        </form>
+                                    @else
+                                    {{-- <p>Отзыв:</p> --}}
+                                        <div class="review-after">
+                                            <p><b>Отзыв:</b></p>
+                                                <span class="star-rating-after">
+                                                    @for($i = 1; $i <= 5; $i++)
+                                                        @if($i <= $order->review->rating)
+                                                            &#9733;
+                                                        @else
+                                                            &#9734;
+                                                        @endif
+                                                    @endfor
+                                                </span>
+                                            <p>{{ $order->review->comment }}</p>
                                         </div>
-                                        <button type="submit">Отправить отзыв</button>
-                                    </form>
-                                @else
-                                    <p>Ваш отзыв: {{ $order->review->comment }}</p>
-                                    <p>Ваша оценка:
-                                        <span class="star-rating-after">
-                                            @for($i = 1; $i <= 5; $i++)
-                                                @if($i <= $order->review->rating)
-                                                    &#9733;
-                                                @else
-                                                    &#9734;
-                                                @endif
-                                            @endfor
-                                        </span>
-                                    </p>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 @endauth
             </div>
         </div>
