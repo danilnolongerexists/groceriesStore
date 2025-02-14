@@ -75,14 +75,12 @@ class ViewsController extends Controller
 
     public function cart()
     {
-        $this->index();
 
         $products=Cart::all()->map(function ($product) {
             $image = Attachment::find($product->product->image);
             $product->product->image = $image ? $image->url() : null; // Добавляем URL изображения продукта
             return $product;
         });
-
 
         if (Auth::check()) {
             // Получаем текущего пользователя

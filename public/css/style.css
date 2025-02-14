@@ -453,7 +453,21 @@ aside {
 }
 
 
+.profile-bottom-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
+.modal-footer {
+    display: flex;
+    flex-direction: column;
+}
+
+#cancelEditBtn {
+    margin-top: 10px;
+    width: 100%;
+}
 
 /* ЗАКАЗЫ */
 /* ЗАКАЗЫ */

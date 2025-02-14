@@ -134,46 +134,47 @@
                         <p>{{ Auth::user()->email }}</p>
                         <p>{{ Auth::user()->address }}</p>
                     </div>
-                    <button id="editProfileBtn">Редактировать профиль</button>
-                    <button id="openOrdersBtn">Заказы</button>
-                    <a href="{{ route('logout') }}">Выйти из аккаунта</a>
+                    <div class="profile-bottom-buttons">
+                        <button id="editProfileBtn">Редактировать профиль</button>
+                        <button id="openOrdersBtn">Заказы</button>
+                        <a href="{{ route('logout') }}">Выйти из аккаунта</a>
+                    </div>
                 @endauth
             </div>
             <div id="editProfileForm">
                 <h2>Редактировать профиль</h2>
                 @auth
-                <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-body">
-                        <div class="input-group">
-                            <input class="input" type="text" id="name" name="name" placeholder="" value="{{ Auth::user()->name }}">
-                            <label class="label" for="name">Имя</label>
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <input class="input" type="text" id="name" name="name" placeholder="" value="{{ Auth::user()->name }}">
+                                <label class="label" for="name">Имя</label>
+                            </div>
+                            <div class="input-group">
+                                <input class="input" type="phone" id="phone-upd" placeholder="" name="phone" value="{{ Auth::user()->phone }}">
+                                <label class="label" for="phone">Номер телефона</label>
+                            </div>
+                            <div class="input-group">
+                                <input class="input" type="email" id="email" name="email" placeholder="" value="{{ Auth::user()->email }}">
+                                <label class="label" for="email">Email</label>
+                            </div>
+                            <div class="input-group">
+                                <input class="input" type="password" id="password" name="password" placeholder="">
+                                <label class="label" for="password">Пароль</label>
+                            </div>
+                            <div class="input-group">
+                                <input class="input" type="address" id="address" name="address" placeholder="" value="{{ Auth::user()->address }}">
+                                <label class="label" for="address">Адрес</label>
+                            </div>
                         </div>
-                        <div class="input-group">
-                            <input class="input" type="phone" id="phone-upd" placeholder="" name="phone" value="{{ Auth::user()->phone }}">
-                            <label class="label" for="phone">Номер телефона</label>
+                        <div class="modal-footer">
+                            <button type="submit">Сохранить изменения</button>
                         </div>
-                        <div class="input-group">
-                            <input class="input" type="email" id="email" name="email" placeholder="" value="{{ Auth::user()->email }}">
-                            <label class="label" for="email">Email</label>
-                        </div>
-                        <div class="input-group">
-                            <input class="input" type="password" id="password" name="password" placeholder="">
-                            <label class="label" for="password">Пароль</label>
-                        </div>
-                        <div class="input-group">
-                            <input class="input" type="address" id="address" name="address" placeholder="" value="{{ Auth::user()->address }}">
-                            <label class="label" for="address">Адрес</label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="submit">Сохранить изменения</button>
-                    </div>
-                  </form>
+                    </form>
+                    <button id="cancelEditBtn">Отмена</button>
                 @endauth
-
-                <button id="cancelEditBtn">Отмена</button>
             </div>
             <div id="ordersProfile">
                 <button id="cancelOrdersBtn">Назад</button>
@@ -187,7 +188,7 @@
                         @foreach(Auth::user()->orders as $order)
                             <div>
                                 <div>
-                                    <h2>Заказ от {{ $order->created }}</h2>
+                                    <h3>Заказ от {{ $order->created }}</h3>
                                     <p>Адрес доставки: {{ $order->address }}</p>
                                     <ul>
                                         @foreach($order->products as $product)
@@ -195,6 +196,7 @@
                                                 <img class="order-img" src="{{ $product->image }}" alt="{{ $product->name }}">
                                                 {{ $product->name }}
                                                 ({{ $product->pivot->count }} шт.)
+                                                {{ $product->price }} ₽
                                             </li>
                                         @endforeach
                                     </ul>
