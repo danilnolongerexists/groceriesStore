@@ -111,7 +111,6 @@ class ViewsController extends Controller
 
     public function category(Category $category)
     {
-        $this->index();
 
         // Получаем все категории и обрабатываем их изображения
         $categories = Category::all()->map(function ($categoryItem) {
@@ -159,7 +158,6 @@ class ViewsController extends Controller
 
     public function event(Event $event, Category $category, Product $product)
     {
-        $this->index();
 
         // Получаем все категории и обрабатываем их изображения
         $categories = Category::all()->map(function ($categoryItem) {

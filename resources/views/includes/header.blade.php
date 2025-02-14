@@ -35,7 +35,7 @@
                 </form>
             </div>
 
-            <div>
+            <div class="header">
                 <ul>
                     @auth
                         <li>
@@ -186,11 +186,11 @@
                         <p>Вы ещё ничего не заказали!</p>
                     @else
                         @foreach(Auth::user()->orders as $order)
-                            <div>
+                            <div class="order">
                                 <div>
                                     <h3>Заказ от {{ $order->created }}</h3>
                                     <p>Адрес доставки: {{ $order->address }}</p>
-                                    <ul>
+                                    <ul class="order-list">
                                         @foreach($order->products as $product)
                                             <li>
                                                 <img class="order-img" src="{{ $product->image }}" alt="{{ $product->name }}">
@@ -203,19 +203,21 @@
                                     @if(empty($order->review))
                                         <form action="{{ route('orders.review', $order->id) }}" method="POST">
                                             @csrf
-                                            <div>
-                                                <label for="comment">Оставьте отзыв:</label>
-                                                <textarea id="comment" name="comment"></textarea>
-                                            </div>
-                                            <div>
-                                                <label>Оценка:</label>
-                                                <div class="star-rating">
-                                                    @for($i = 5; $i >= 1; $i--)
-                                                        <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}>
-                                                        <label for="star{{ $i }}">&#9733;</label>
-                                                    @endfor
+                                            <div class="comment-container">
+                                                <label for="comment" class="comment-label">Оставьте отзыв:</label>
+
+                                                <div>
+                                                    <div class="star-rating">
+                                                        @for($i = 5; $i >= 1; $i--)
+                                                            <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}>
+                                                            <label for="star{{ $i }}">&#9733;</label>
+                                                        @endfor
+                                                    </div>
                                                 </div>
+
+                                                <textarea class="comment-textarea" id="comment" name="comment"></textarea>
                                             </div>
+
                                             <button type="submit">Отправить отзыв</button>
                                         </form>
                                     @else
