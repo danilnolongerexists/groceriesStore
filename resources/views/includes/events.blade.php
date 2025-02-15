@@ -1,5 +1,5 @@
 @foreach ($events as $event)
-<a href="{{ route('event.show', $event) }}">
+<a class="event-link" href="{{ route('event.show', $event) }}">
     <div class="event">
         <img src="{{ $event->image }}" alt="{{ $event->name }}">
         <div>

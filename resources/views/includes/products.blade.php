@@ -22,7 +22,7 @@
                     <form class="cart-increase" action="{{ route('cart.increase', $product) }}" method="POST">
                         @csrf
                         <button type="submit" >+</button>
-                        ({{ $inCart->count }} шт.)
+                        ({{ $inCart->count }}x)
                     </form>
                 </div>
             @else
