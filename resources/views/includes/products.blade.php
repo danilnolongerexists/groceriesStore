@@ -40,9 +40,9 @@
             <span class="close" id="closeProduct" onclick="closeProduct()">&times;</span>
             <div id="modalProduct">
                 <div id="modalProductInfo">
-                    <div>
+                    {{-- <div> --}}
                         <img src="{{ $product->image }}" alt="{{ $product->name }}">
-                    </div>
+                    {{-- </div> --}}
                     <div class="modalProductText">
                         <h2>{{ $product->name }}</h2>
                         <p>{{ $product->description }}</p>

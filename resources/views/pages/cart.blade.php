@@ -20,7 +20,7 @@
                                     <td class="cart-product">
                                         <a id="openProductModalBtn" onclick="setproducttemp({{ json_encode($product->product->id) }})">
                                             <img id="modal-cart-image" src="{{ $product->product->image }}" alt="{{ $product->product->name }}">
-                                                    {{ $product->product->name }}
+                                                <p>   {{ $product->product->name }}</p>
                                         </a>
                                     </td>
                                     <td>{{ $product->product->price * $product->count }} ₽</td>
