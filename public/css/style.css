@@ -13,10 +13,10 @@ button {
     font-family: "Inter", serif;
 }
 
-a {
+/* a {
     text-decoration: none;
     color: black;
-}
+} */
 
 textarea {
     font-family: "Inter", serif;
@@ -348,6 +348,10 @@ aside {
     max-width: 212px; /* Устанавливаем максимальную ширину, равную ширине изображения */
 }
 
+.cart-product a {
+    width: 354px;
+}
+
 .product img{
     height: 212px;
     width: 212px;
@@ -374,16 +378,21 @@ aside {
 }
 
 .cart-decrease {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .cart-increase {
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .product p {
     margin: 0;
     margin-bottom: 5px;
+}
+
+.cart-count-wrap {
+    display: flex;
+    align-items: center;
 }
 
 
@@ -490,6 +499,13 @@ aside {
 .order-list {
     margin: 0;
     padding: 0;
+}
+
+.order-list p {
+    margin: 0;
+    white-space: nowrap; /* Текст не переносится */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis;
 }
 
 .order-list li {
@@ -666,6 +682,7 @@ aside {
 
 .cart-wrap {
     display: flex;
+    justify-content: space-between;
 }
 
 .table {
@@ -677,6 +694,19 @@ aside {
     height: 100px;
     object-fit: cover;
     border-radius: 15px;
+}
+
+.openProductModalBtn-cart {
+    white-space: normal;
+}
+
+.cart-product-info p {
+    margin: 0;
+}
+
+.product-price-cart {
+    font-weight: normal;
+    color: #000;
 }
 
 .table td a {
@@ -790,10 +820,6 @@ footer a:hover{
         position: relative;
         /* width: 100%; */
         /* max-width: calc(768px-40px); */
-    }
-
-    .logo-brand {
-        /* display: none; */
     }
 
     .logo-brand p {
@@ -916,8 +942,26 @@ footer a:hover{
         width: 88vw;
     }
 
+    .modal input {
+        width: 82.358vw;
+    }
+
+    .modal textarea {
+        width: 72.616vw;
+    }
+
     #modalProductInfo {
         flex-direction: column;
     }
 
+    .order-list li {
+        width: 72.616vw;
+    }
+
+    .order-list p {
+        white-space: nowrap; /* Запрещаем перенос текста на новую строку */
+        overflow: hidden; /* Скрываем текст, который выходит за пределы элемента */
+        text-overflow: ellipsis; /* Добавляем троеточие в конце обрезанного текста */
+        width: 72.616vw;
+    }
 }

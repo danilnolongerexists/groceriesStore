@@ -22,7 +22,7 @@
                     <form class="cart-increase" action="{{ route('cart.increase', $product) }}" method="POST">
                         @csrf
                         <button type="submit" >+</button>
-                        ({{ $inCart->count }}x)
+                        {{ $inCart->count }}x
                     </form>
                 </div>
             @else
@@ -30,7 +30,7 @@
                 <form class="product-notadd" action="{{ route('cart.add', $product) }}" method="POST">
                     @csrf
                     {{ $product->price }} ₽ &nbsp;
-                    <button type="submit"> +</button>
+                    <button type="submit">+</button>
                 </form>
             @endif
         @endauth

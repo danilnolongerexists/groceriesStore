@@ -20,22 +20,25 @@
                                     <td class="cart-product">
                                         <a id="openProductModalBtn" onclick="setproducttemp({{ json_encode($product->product->id) }})">
                                             <img id="modal-cart-image" src="{{ $product->product->image }}" alt="{{ $product->product->name }}">
-                                                <p>   {{ $product->product->name }}</p>
+                                            <div class="cart-product-info">
+                                                <p class="product-name-cart">{{ $product->product->name }}</p>
+                                                <p class="product-price-cart">{{ $product->product->price * $product->count }} ₽</p>
+                                            </div>
                                         </a>
-                                    </td>
-                                    <td>{{ $product->product->price * $product->count }} ₽</td>
-                                    <td>
-                                        <div style="display: flex; align-items: center;">
+                                        <div class="cart-count-wrap">
                                             <form action="{{ route('cart.decrease', $product->product->id) }}" method="POST" style="margin-right: 10px;">
                                                 @csrf
                                                 <button type="submit" class="btn-cart">-</button>
                                             </form>
-                                            {{ $product->count }}
+                                            <p class="product-price-cart">{{ $product->count }}</p>
                                             <form action="{{ route('cart.increase', $product->product->id) }}" method="POST" style="margin-left: 10px;">
                                                 @csrf
                                                 <button type="submit" class="btn-cart">+</button>
                                             </form>
                                         </div>
+                                    </td>
+                                    <td class="cart-count">
+
                                     </td>
                                 </tr>
 
