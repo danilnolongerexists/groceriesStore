@@ -1,10 +1,10 @@
 @foreach ($products as $product)
     <div class="product">
         <a id="openProductModalBtn" onclick="setproducttemp({{ json_encode($product->id) }})">
-        <img src="{{ $product->image }}" alt="{{ $product->name }}">
-        <div>
-            <p>{{ $product->name }}</p>
-        </div>
+            <img src="{{ $product->image }}" alt="{{ $product->name }}">
+            <div>
+                <p>{{ $product->name }}</p>
+            </div>
         </a>
         @auth
             @php
@@ -36,13 +36,11 @@
         @endauth
     </div>
     <div id="productModal-{{ $product->id}}" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" id="modal-content">
             <span class="close" id="closeProduct" onclick="closeProduct()">&times;</span>
             <div id="modalProduct">
                 <div id="modalProductInfo">
-                    {{-- <div> --}}
-                        <img src="{{ $product->image }}" alt="{{ $product->name }}">
-                    {{-- </div> --}}
+                    <img src="{{ $product->image }}" alt="{{ $product->name }}">
                     <div class="modalProductText">
                         <h2>{{ $product->name }}</h2>
                         <p>{{ $product->description }}</p>

@@ -43,14 +43,16 @@
                                 </tr>
 
                                 <div id="productModal-{{ $product->product->id}}" class="modal">
-                                    <div class="modal-content">
-                                        <span class="close" onclick="closeProduct()">&times;</span>
+                                    <div class="modal-content" id="modal-content">
+                                        <span class="close" id="closeProduct" onclick="closeProduct()">&times;</span>
                                         <div id="modalProduct">
-                                            <h2 id="modal-cart-name">{{ $product->product->name }}</h2>
-                                            <div id="modalProductInfo" style="display: flex;flex-direction: column;align-items: flex-start;">
-                                                <img class="card-img-top" id="modal-cart-image" src="{{ $product->product->image }}" alt="{{ $product->product->name }}" style="height: 200px; object-fit: cover;">
-                                                <p id="modal-cart-description" class="card-title">{{ $product->product->description }}</p>
-                                                <p id="modal-cart-price" class="card-title">{{ $product->product->price }} ₽</p>
+                                            <div id="modalProductInfo">
+                                                <img src="{{ $product->product->image }}" alt="{{ $product->product->name }}">
+                                                <div class="modalProductText">
+                                                    <h2>{{ $product->product->name }}</h2>
+                                                    <p>{{ $product->product->description }}</p>
+                                                    <p><b>{{ $product->product->price }} ₽</b> за штуку</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

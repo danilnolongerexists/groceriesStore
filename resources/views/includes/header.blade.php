@@ -204,23 +204,6 @@
                                             </li>
                                         @endforeach
                                     </ul>
-                                    <div id="productModal-{{ $product->id}}" class="modal">
-                                        <div class="modal-content">
-                                            <span class="close" id="closeProduct" onclick="closeProduct()">&times;</span>
-                                            <div id="modalProduct">
-                                                <div id="modalProductInfo">
-                                                    {{-- <div> --}}
-                                                        <img src="{{ $product->image }}" alt="{{ $product->name }}">
-                                                    {{-- </div> --}}
-                                                    <div class="modalProductText">
-                                                        <h2>{{ $product->name }}</h2>
-                                                        <p>{{ $product->description }}</p>
-                                                        <p><b>{{ $product->price }} ₽</b> за штуку</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     @if(empty($order->review))
                                         <form action="{{ route('orders.review', $order->id) }}" method="POST">
                                             @csrf

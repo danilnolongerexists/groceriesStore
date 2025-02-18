@@ -13,10 +13,10 @@ button {
     font-family: "Inter", serif;
 }
 
-/* a {
+a {
     text-decoration: none;
     color: black;
-} */
+}
 
 textarea {
     font-family: "Inter", serif;
@@ -420,6 +420,15 @@ aside {
     border-radius: 10px;
 }
 
+.modalProductText h2, p {
+    overflow-wrap: break-word; /* Альтернатива для современных браузеров */
+    max-width: 23vw;
+}
+
+#modal-content {
+    max-width: 50vw;
+}
+
 #modalProductInfo {
     display: flex;
     gap: 20px;
@@ -435,8 +444,8 @@ aside {
 
 .modal-content img {
     border-radius: 15px;
-    width: 200px;
-    height: 200px;
+    width: 350px;
+    height: 350px;
     object-fit: cover;
 }
 
@@ -454,14 +463,6 @@ aside {
     text-decoration: none;
 }
 
-
-
-
-/* #modalProfileInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-} */
 
 #editProfileForm {
     display: none;
@@ -650,6 +651,8 @@ aside {
 
 
 
+
+
 /* КОРЗИНА */
 /* КОРЗИНА */
 /* КОРЗИНА */
@@ -694,10 +697,6 @@ aside {
     height: 100px;
     object-fit: cover;
     border-radius: 15px;
-}
-
-.openProductModalBtn-cart {
-    white-space: normal;
 }
 
 .cart-product-info p {
@@ -860,6 +859,13 @@ footer a:hover{
         width: 100%;
     }
 
+    .main-index-title {
+        width: 84.616vw;
+        white-space: nowrap; /* Текст не переносится */
+        overflow: hidden; /* Обрезаем всё за пределами блока */
+        text-overflow: ellipsis;
+    }
+
     aside {
         /* display: none; */
         margin: 30px 10px 10px 10px;
@@ -954,6 +960,12 @@ footer a:hover{
         flex-direction: column;
     }
 
+    #modalProductInfo img {
+        object-fit: cover;
+        width: 300px;
+        height: 300px;
+    }
+
     .order-list li {
         width: 72.616vw;
     }
@@ -963,5 +975,13 @@ footer a:hover{
         overflow: hidden; /* Скрываем текст, который выходит за пределы элемента */
         text-overflow: ellipsis; /* Добавляем троеточие в конце обрезанного текста */
         width: 72.616vw;
+    }
+
+    .modalProductText h2, p {
+        max-width: 83.616vw;
+    }
+
+    #modal-content {
+        max-width: 88vw;
     }
 }
