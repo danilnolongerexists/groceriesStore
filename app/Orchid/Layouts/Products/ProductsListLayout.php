@@ -25,7 +25,7 @@ class ProductsListLayout extends Table
      *
      * @return TD[]
      */
-    protected function columns(): iterable
+    protected function columns(): array
     {
         return [
             TD::make('name', __('Название'))

@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Attachment\Attachable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Orchid\Attachment\Models\Attachment;
+use Orchid\Filters\Filterable;
+use Orchid\Screen\AsSource;
 
 class Product extends Model
 {
 
-    use HasFactory;
+    use HasFactory, AsSource, Attachable, Filterable;
 
     public $timestamps = false;
 
@@ -20,6 +23,17 @@ class Product extends Model
         'image',
         'category_id',
         'event_id'
+    ];
+
+        /**
+     * Name of columns to which http sorting can be applied
+     *
+     * @var array
+     */
+    protected $allowedSorts = [
+        'title',
+        'created_at',
+        'updated_at'
     ];
 
     public function event()

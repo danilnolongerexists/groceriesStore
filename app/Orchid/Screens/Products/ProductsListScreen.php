@@ -14,10 +14,10 @@ class ProductsListScreen extends Screen
      *
      * @return array
      */
-    public function query(): iterable
+    public function query(): array
     {
         return [
-            'products' => Product::paginate()
+            'products' => Product::filters()->defaultSort('id')->paginate()
         ];
     }
 

@@ -12,7 +12,7 @@
                             $total = 0;
                         @endphp
                         @foreach($products as $product)
-                            @if($product->product) <!-- Проверяем, что $product->product не null -->
+                            @if($product->product)
                                 @php
                                     $total += $product->product->price * $product->count;
                                 @endphp

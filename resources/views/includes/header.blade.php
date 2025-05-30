@@ -254,18 +254,18 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/modalProfile.js') }}"></script>
 
-<script>
-    // Проверяем наличие ошибок валидации
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            toastr.error("{{ $error }}");
-        @endforeach
-    @endif
+    <script>
+        // Проверяем наличие ошибок валидации
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error("{{ $error }}");
+            @endforeach
+        @endif
 
-    // Проверяем наличие успешных сообщений
-    @if (session('success'))
-        toastr.success("{{ session('success') }}");
-    @endif
-</script>
+        // Проверяем наличие успешных сообщений
+        @if (session('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+    </script>
 
 </header>
